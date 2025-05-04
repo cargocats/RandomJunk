@@ -5,8 +5,6 @@ import com.github.cargocats.randomjunk.client.entity.model.JobAppEntityModel;
 import com.github.cargocats.randomjunk.client.entity.render.state.JobAppEntityRenderState;
 import com.github.cargocats.randomjunk.client.registry.REntityModelLayers;
 import com.github.cargocats.randomjunk.entity.JobAppEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 
 import net.minecraft.client.render.entity.MobEntityRenderer;

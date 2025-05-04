@@ -22,20 +22,24 @@ public class REntityTypes {
                     SpawnGroup.MONSTER
             )
                     .dimensions(4.0F, 8.0F)
-                    .maxTrackingRange(256)
+                    .maxTrackingRange(128)
     );
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk entity types.");
         FabricDefaultAttributeRegistry.register(JOB_APP, HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.MOVEMENT_SPEED, 1.0f)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.5f)
                 .add(EntityAttributes.ATTACK_DAMAGE, 20.0f)
-                .add(EntityAttributes.STEP_HEIGHT, 3.0f)
-                .add(EntityAttributes.MAX_HEALTH, 150.0f)
+                .add(EntityAttributes.STEP_HEIGHT, 16.0f)
+                .add(EntityAttributes.MAX_HEALTH, 100.0f)
+                .add(EntityAttributes.FOLLOW_RANGE, 128.0f)
+                .build()
         );
+
+        RandomJunk.LOG.info("Initialized Random Junk entity types.");
     }
 
-    private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {
+    private static <T extends Entity> EntityType<T> register(String id,
+                                                             EntityType.Builder<T> builder) {
         RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(RandomJunk.MOD_ID, id));
 
         return Registry.register(Registries.ENTITY_TYPE, key, builder.build(key));

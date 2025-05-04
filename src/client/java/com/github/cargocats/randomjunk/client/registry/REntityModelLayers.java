@@ -10,7 +10,7 @@ public class REntityModelLayers {
     public static final EntityModelLayer JOB_APP = new EntityModelLayer(Identifier.of(RandomJunk.MOD_ID, "job_app_mlayer"), "main");
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized RandomJunk entity model layers");
         EntityModelLayerRegistry.registerModelLayer(JOB_APP, JobAppEntityModel::getTexturedModelData);
+        RandomJunk.LOG.info("Initialized RandomJunk entity model layers");
     }
 }

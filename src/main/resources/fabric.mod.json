@@ -21,11 +21,6 @@
     ]
   },
   "mixins": [
-    "randomjunk.mixins.json",
-    {
-      "config": "randomjunk.client.mixins.json",
-      "environment": "client"
-    }
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
