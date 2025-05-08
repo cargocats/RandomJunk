@@ -1,6 +1,7 @@
 package com.github.cargocats.randomjunk;
 
-import com.github.cargocats.randomjunk.registry.REntityTypes;
+import com.github.cargocats.randomjunk.registry.RJEntityTypes;
+import com.github.cargocats.randomjunk.registry.RJItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,8 @@ public class RandomJunk implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        REntityTypes.initialize();
+        RJEntityTypes.initialize();
+        RJItems.initialize();
         LOG.info("Initialized Random Junk!");
     }
 }

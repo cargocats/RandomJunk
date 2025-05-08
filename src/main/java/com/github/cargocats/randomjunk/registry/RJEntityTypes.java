@@ -2,43 +2,46 @@ package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.entity.JobAppEntity;
+import com.github.cargocats.randomjunk.entity.NerdEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
-public class REntityTypes {
-    public static final EntityType<JobAppEntity> JOB_APP = register(
+public class RJEntityTypes {
+    public static final EntityType<JobAppEntity> JOB_APP = registerEntity(
             "job_app",
             EntityType.Builder.create(
                     JobAppEntity::new,
                     SpawnGroup.MONSTER
             )
-                    .dimensions(4.0F, 8.0F)
+                    .dimensions(4.0f, 8.0f)
                     .maxTrackingRange(128)
     );
 
+    public static final EntityType<NerdEntity> NERD = registerEntity(
+            "nerd",
+            EntityType.Builder.create(
+                    NerdEntity::new,
+                    SpawnGroup.CREATURE
+            )
+                    .dimensions(0.6f, 1.8f)
+                    .maxTrackingRange(32)
+    );
+
     public static void initialize() {
-        FabricDefaultAttributeRegistry.register(JOB_APP, HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.5f)
-                .add(EntityAttributes.ATTACK_DAMAGE, 20.0f)
-                .add(EntityAttributes.STEP_HEIGHT, 16.0f)
-                .add(EntityAttributes.MAX_HEALTH, 100.0f)
-                .add(EntityAttributes.FOLLOW_RANGE, 128.0f)
-                .build()
-        );
+        FabricDefaultAttributeRegistry.register(JOB_APP, JobAppEntity.createJobAppAttributes());
+        FabricDefaultAttributeRegistry.register(NERD, NerdEntity.createNerdAttributes());
 
         RandomJunk.LOG.info("Initialized Random Junk entity types.");
     }
 
-    private static <T extends Entity> EntityType<T> register(String id,
+    private static <T extends Entity> EntityType<T> registerEntity(String id,
                                                              EntityType.Builder<T> builder) {
         RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(RandomJunk.MOD_ID, id));
 
