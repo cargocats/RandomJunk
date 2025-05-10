@@ -1,14 +1,10 @@
 package com.github.cargocats.randomjunk.client.entity.model;
 
-import com.github.cargocats.randomjunk.client.entity.render.NerdEntityRenderer;
 import com.github.cargocats.randomjunk.client.entity.render.animation.NerdAnimations;
 import com.github.cargocats.randomjunk.client.entity.render.state.NerdEntityRenderState;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.EntityModel;
 
-// Made with Blockbench 4.12.4
-// Exported for Minecraft version 1.17+ for Yarn
-// Paste this class into your mod and generate all required imports
 public class NerdEntityModel extends EntityModel<NerdEntityRenderState> {
 	private final ModelPart player;
 	private final ModelPart body;

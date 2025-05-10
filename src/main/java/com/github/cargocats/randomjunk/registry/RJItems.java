@@ -2,7 +2,6 @@ package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import net.minecraft.component.type.FoodComponent;
-import net.minecraft.component.type.FoodComponents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
@@ -28,8 +27,6 @@ public class RJItems {
 
     public static void initialize() {
         RandomJunk.LOG.info("Initialized Random Junk items.");
-
-        //Registry.register()
     }
 
     private static Item registerItem(String name, Item.Settings settings) {
