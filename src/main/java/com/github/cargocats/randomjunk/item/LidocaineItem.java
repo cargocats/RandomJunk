@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class LidocaineItem extends Item {
-    private static final long TIME_WINDOW_TICKS = 5000 * 20;
+    private static final long TIME_WINDOW_TICKS = 60 * 20;
     private static final int OVERDOSE_THRESHOLD = 5;
 
     public LidocaineItem(Settings settings) {

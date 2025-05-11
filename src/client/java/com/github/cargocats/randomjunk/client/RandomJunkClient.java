@@ -25,6 +25,7 @@ public class RandomJunkClient implements ClientModInitializer {
             if (stack.isOf(RJItems.LIDOCAINE)) {
                 textList.add(Text.literal("Extinguishes and gives regeneration if on fire.").formatted(Formatting.GRAY));
                 textList.add(Text.literal("Use too much and you might overdose!").formatted(Formatting.RED));
+                textList.add(Text.literal("Use narcan to stop your overdose.").formatted(Formatting.DARK_GRAY));
             }
         });
     }
