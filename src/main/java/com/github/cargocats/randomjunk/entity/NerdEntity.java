@@ -1,10 +1,8 @@
 package com.github.cargocats.randomjunk.entity;
 
-import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.registry.RJItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.*;
