@@ -18,6 +18,7 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(RJItems.CRANBERRY, "Cranberry");
         translationBuilder.add(RJItems.CREATINE, "Creatine");
+        translationBuilder.add(RJItems.LIDOCAINE, "Lidocaine");
         translationBuilder.add(RJItems.PROTEIN_DRINK, "Protein Drink");
         translationBuilder.add(RJItems.NERD_SPAWN_EGG, "Nerd Spawn Egg");
         translationBuilder.add(RJItems.JOB_APP_SPAWN_EGG, "Job App Spawn Egg");

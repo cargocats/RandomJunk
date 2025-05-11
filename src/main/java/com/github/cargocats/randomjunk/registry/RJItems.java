@@ -1,6 +1,7 @@
 package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
+import com.github.cargocats.randomjunk.item.LidocaineItem;
 import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
@@ -33,9 +34,11 @@ public class RJItems {
     public static final Item PROTEIN_DRINK = register("protein_drink", settings -> new Item(
             settings.food(
                     new FoodComponent.Builder().nutrition(3).saturationModifier(1.8f).build(),
-                    ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 60 * 2 * 20, 0))).build()
+                    ConsumableComponents.drink().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 60 * 2 * 20, 0))).build()
             )
     ));
+
+    public static final Item LIDOCAINE = register("lidocaine", LidocaineItem::new);
 
     public static void initialize() {
         RandomJunk.LOG.info("Initialized Random Junk items.");
@@ -54,12 +57,12 @@ public class RJItems {
         return Registry.register(Registries.ITEM, key, item);
     }
 
-    private static RegistryKey<Item> keyOf(String id) {
-        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(RandomJunk.MOD_ID, id));
-    }
-
     public static Item register(String id, Item.Settings settings) {
         return register(keyOf(id), Item::new, settings);
+    }
+
+    private static RegistryKey<Item> keyOf(String id) {
+        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(RandomJunk.MOD_ID, id));
     }
 
     private static SpawnEggItem registerSpawnEggForEntity(EntityType<? extends MobEntity> entity, String name) {
