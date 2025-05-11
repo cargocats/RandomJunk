@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "randomjunk:creatine",
+    "minecraft:milk_bucket"
+  ],
+  "result": {
+    "count": 1,
+    "id": "randomjunk:protein_drink"
+  }
+}
