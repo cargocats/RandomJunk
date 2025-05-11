@@ -7,8 +7,8 @@ import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
 
-public class ModelGenerator extends FabricModelProvider {
-    public ModelGenerator(FabricDataOutput output) {
+public class RJModelGenerator extends FabricModelProvider {
+    public RJModelGenerator(FabricDataOutput output) {
         super(output);
     }
 
@@ -22,5 +22,7 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(RJItems.NERD_SPAWN_EGG, Models.GENERATED);
         itemModelGenerator.register(RJItems.JOB_APP_SPAWN_EGG, Models.GENERATED);
         itemModelGenerator.register(RJItems.CRANBERRY, Models.GENERATED);
+        itemModelGenerator.register(RJItems.CREATINE, Models.GENERATED);
+        itemModelGenerator.register(RJItems.PROTEIN_DRINK, Models.GENERATED);
     }
 }
