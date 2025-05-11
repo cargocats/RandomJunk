@@ -9,10 +9,6 @@ import java.util.List;
 public class PlayerData {
     public List<Long> overdoseList;
 
-    public PlayerData(List<Long> overdoseList) {
-        this.overdoseList = overdoseList;
-    }
-
     public PlayerData() {
         this.overdoseList = new ArrayList<>();
     }

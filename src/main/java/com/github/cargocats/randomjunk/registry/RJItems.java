@@ -2,7 +2,6 @@ package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
-import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EntityType;
@@ -57,6 +56,7 @@ public class RJItems {
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    @SuppressWarnings("unused")
     public static Item register(String id, Item.Settings settings) {
         return register(keyOf(id), Item::new, settings);
     }
