@@ -26,6 +26,14 @@ public class RJRecipeGenerator extends FabricRecipeProvider {
                         .input(Items.MILK_BUCKET)
                         .criterion(hasItem(RJItems.CREATINE), conditionsFromItem(RJItems.CREATINE))
                         .offerTo(recipeExporter);
+                createShapeless(RecipeCategory.BREWING, RJItems.CREATINE)
+                        .input(Items.GHAST_TEAR)
+                        .input(Items.REDSTONE)
+                        .input(Items.BLAZE_POWDER)
+                        .input(Items.GLOWSTONE_DUST)
+                        .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
+                        .criterion(hasItem(Items.GHAST_TEAR), conditionsFromItem(Items.GHAST_TEAR))
+                        .offerTo(recipeExporter);
             }
         };
     }
