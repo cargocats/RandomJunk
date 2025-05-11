@@ -23,6 +23,7 @@ public class RJItemGroups {
         ItemGroupEvents.modifyEntriesEvent(RANDOM_JUNK_ITEM_GROUP_KEY).register(itemGroup -> {
             itemGroup.add(RJItems.CRANBERRY);
             itemGroup.add(RJItems.CREATINE);
+            itemGroup.add(RJItems.LIDOCAINE);
             itemGroup.add(RJItems.JOB_APP_SPAWN_EGG);
             itemGroup.add(RJItems.NERD_SPAWN_EGG);
             itemGroup.add(RJItems.PROTEIN_DRINK);
