@@ -1,4 +1,6 @@
 {
+  "death.attack.overdose": "%1$s died from an Overdose",
+  "effect.randomjunk.overdose": "Overdose",
   "entity.randomjunk.job_app": "Job App",
   "entity.randomjunk.nerd": "Nerd",
   "item.randomjunk.cranberry": "Cranberry",
