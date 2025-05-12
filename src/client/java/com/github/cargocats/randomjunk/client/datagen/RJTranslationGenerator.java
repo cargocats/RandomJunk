@@ -1,8 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.registry.RJEntityTypes;
-import com.github.cargocats.randomjunk.registry.RJItemGroups;
-import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.registry.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -26,5 +24,9 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add(RJEntityTypes.JOB_APP, "Job App");
         translationBuilder.add(RJEntityTypes.NERD, "Nerd");
         translationBuilder.add(RJItemGroups.RANDOM_JUNK_ITEM_GROUP_KEY, "Random Junk");
+
+        translationBuilder.add(RJStatusEffects.OVERDOSE.value(), "Overdose");
+
+        translationBuilder.add("death.attack.overdose", "%1$s died from an Overdose");
     }
 }

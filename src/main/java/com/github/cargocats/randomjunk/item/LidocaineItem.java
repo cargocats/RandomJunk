@@ -3,6 +3,7 @@ package com.github.cargocats.randomjunk.item;
 import com.github.cargocats.randomjunk.PlayerData;
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.StateSaverAndLoader;
+import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -51,6 +52,7 @@ public class LidocaineItem extends Item {
 
                 if (playerData.overdoseList.size() > OVERDOSE_THRESHOLD) {
                     user.sendMessage(Text.literal("You are overdosing. Use narcan now.").formatted(Formatting.RED), true);
+                    user.addStatusEffect(new StatusEffectInstance(RJStatusEffects.OVERDOSE, 60 * 20, 0));
                 } else {
                     user.sendMessage(Text.literal("You feel the burns ease and heal..."), true);
                 }
