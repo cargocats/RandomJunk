@@ -49,8 +49,7 @@ public class LidocaineItem extends Item {
                         .setEvent("overdoseTimer" + uuid, world.getTime() + 100, new OverdoseTimerCallback(uuid));
 
                 if (playerData.overdoseList.size() > OVERDOSE_THRESHOLD) {
-                    user.sendMessage(Text.literal("You are overdosing. Use narcan now.").formatted(Formatting.RED), true);
-                    user.addStatusEffect(new StatusEffectInstance(RJStatusEffects.OVERDOSE, 60 * 20, 0));
+                    user.sendMessage(Text.literal("You are overdosing. Use narcan now...").formatted(Formatting.RED), true);
                 } else {
                     user.sendMessage(Text.literal("You feel the burns ease and heal..."), true);
                 }

@@ -1,10 +1,12 @@
 package com.github.cargocats.randomjunk.delay;
 
 import com.github.cargocats.randomjunk.RandomJunk;
-import com.mojang.serialization.Codec;
+import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Uuids;
 import net.minecraft.world.timer.Timer;
@@ -28,7 +30,10 @@ public class OverdoseTimerCallback implements TimerCallback<MinecraftServer> {
 
     @Override
     public void call(MinecraftServer server, Timer<MinecraftServer> events, long time) {
-        RandomJunk.LOG.info("Got uuid: {} player: {}", this.uuid, server.getPlayerManager().getPlayer(this.uuid));
+        ServerPlayerEntity player = server.getPlayerManager().getPlayer(this.uuid);
+        if (player != null) {
+            player.addStatusEffect(new StatusEffectInstance(RJStatusEffects.OVERDOSE, 60 * 20, 0));
+        }
     }
 
     @Override

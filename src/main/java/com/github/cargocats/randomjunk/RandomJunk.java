@@ -3,7 +3,6 @@ package com.github.cargocats.randomjunk;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.timer.TimerCallbackSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
