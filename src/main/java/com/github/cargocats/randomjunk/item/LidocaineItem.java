@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.PlayerData;
-import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.StateSaverAndLoader;
+import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -35,12 +35,9 @@ public class LidocaineItem extends Item {
 
             if (user.isOnFire()) {
                 UUID uuid = user.getUuid();
-                RandomJunk.LOG.info("Players: {}, class: {}", state.players, state.players.getClass().getName());
                 PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
 
                 state.lidocaineConsumed++;
-                RandomJunk.LOG.info("Global Lidocaine total consumed: {}", state.lidocaineConsumed);
-
                 long timeNow = world.getTime();
 
                 playerData.overdoseList.add(timeNow);
@@ -48,7 +45,8 @@ public class LidocaineItem extends Item {
 
                 state.markDirty();
 
-                RandomJunk.LOG.info("Player overdose: {}", playerData.overdoseList);
+                world.getServer().getSaveProperties().getMainWorldProperties().getScheduledEvents()
+                        .setEvent("overdoseTimer" + uuid, world.getTime() + 100, new OverdoseTimerCallback(uuid));
 
                 if (playerData.overdoseList.size() > OVERDOSE_THRESHOLD) {
                     user.sendMessage(Text.literal("You are overdosing. Use narcan now.").formatted(Formatting.RED), true);
@@ -63,10 +61,7 @@ public class LidocaineItem extends Item {
                 user.sendMessage(Text.literal("You feel no effect."), true);
             }
 
-            if (!user.getAbilities().creativeMode) {
-                item.decrement(1);
-            }
-
+            item.decrementUnlessCreative(1, user);
             user.getItemCooldownManager().set(item, 20);
             return ActionResult.PASS;
         }

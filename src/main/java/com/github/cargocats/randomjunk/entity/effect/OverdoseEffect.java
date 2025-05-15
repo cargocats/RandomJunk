@@ -27,6 +27,6 @@ public class OverdoseEffect extends StatusEffect {
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         int i = 10 >> amplifier;
-        return duration % i == 0;
+        return i == 0 || duration % i == 0;
     }
 }
