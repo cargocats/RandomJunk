@@ -2,6 +2,7 @@ package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
+import com.github.cargocats.randomjunk.item.NarcanItem;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EntityType;
@@ -34,10 +35,11 @@ public class RJItems {
             settings.food(
                     new FoodComponent.Builder().nutrition(3).saturationModifier(1.8f).build(),
                     ConsumableComponents.drink().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 60 * 2 * 20, 0))).build()
-            )
+            ).useRemainder(Items.BUCKET)
     ));
 
     public static final Item LIDOCAINE = register("lidocaine", LidocaineItem::new);
+    public static final Item NARCAN = register("narcan", NarcanItem::new);
 
     public static void initialize() {
         RandomJunk.LOG.info("Initialized Random Junk items.");
