@@ -20,7 +20,7 @@ public class OverdoseEffect extends StatusEffect {
                         .getOrThrow(RegistryKeys.DAMAGE_TYPE)
                         .getEntry(RJDamageTypes.OVERDOSE.getValue()).get()
         );
-        entity.damage(world, damageSource, 2.0f * Math.min(1, amplifier));
+        entity.damage(world, damageSource, 2.0f * Math.max(1, amplifier));
         return true;
     }
 
