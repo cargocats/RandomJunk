@@ -12,12 +12,12 @@ import net.minecraft.util.Uuids;
 import net.minecraft.world.timer.Timer;
 import net.minecraft.world.timer.TimerCallback;
 
+import java.util.ArrayList;
 import java.util.UUID;
-
 
 public class OverdoseTimerCallback implements TimerCallback<MinecraftServer> {
     private final UUID uuid;
-
+    public static final ArrayList<UUID> UUIDS = new ArrayList<>();
     public static final Identifier ID = Identifier.of(RandomJunk.MOD_ID, "overdose_timer");
 
     public static final MapCodec<OverdoseTimerCallback> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -31,8 +31,16 @@ public class OverdoseTimerCallback implements TimerCallback<MinecraftServer> {
     @Override
     public void call(MinecraftServer server, Timer<MinecraftServer> events, long time) {
         ServerPlayerEntity player = server.getPlayerManager().getPlayer(this.uuid);
+        giveEffect(player);
+
+        if (player == null) {
+            UUIDS.add(this.uuid);
+        }
+    }
+
+    public static void giveEffect(ServerPlayerEntity player) {
         if (player != null) {
-            player.addStatusEffect(new StatusEffectInstance(RJStatusEffects.OVERDOSE, 60 * 20, 0));
+            player.addStatusEffect(new StatusEffectInstance(RJStatusEffects.OVERDOSE, 5 * 60 * 20, 0));
         }
     }
 
