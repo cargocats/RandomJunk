@@ -1,8 +1,10 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.PlayerData;
+import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.StateSaverAndLoader;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
+import com.github.cargocats.randomjunk.registry.RJSounds;
 import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -10,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -30,6 +33,10 @@ public class LidocaineItem extends Item {
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack item = user.getStackInHand(hand);
 
+        if (world.isClient && user.isOnFire()) {
+            user.playSound(RJSounds.APPLY_LIDOCAINE,1.0f, 1.0f);
+        }
+
         if (!world.isClient) {
             StateSaverAndLoader state = StateSaverAndLoader.getState((ServerWorld) world);
 
@@ -45,17 +52,18 @@ public class LidocaineItem extends Item {
 
                 state.markDirty();
 
-                world.getServer().getSaveProperties().getMainWorldProperties().getScheduledEvents()
-                        .setEvent("overdoseTimer" + uuid, world.getTime() + 100, new OverdoseTimerCallback(uuid));
-
                 if (playerData.overdoseList.size() > OVERDOSE_THRESHOLD) {
                     user.sendMessage(Text.literal("You are overdosing. Use narcan now...").formatted(Formatting.RED), true);
+
+                    world.getServer().getSaveProperties().getMainWorldProperties().getScheduledEvents()
+                            .setEvent("overdoseTimer" + uuid, world.getTime() + 100, new OverdoseTimerCallback(uuid));
                 } else {
-                    user.sendMessage(Text.literal("You feel the burns ease and heal..."), true);
+                    user.sendMessage(Text.literal("You feel the burns ease and heal... (" + (OVERDOSE_THRESHOLD + 1 - playerData.overdoseList.size()) + " uses before overdose)"), true);
                 }
 
                 user.extinguishWithSound();
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1));
+                user.playSound(RJSounds.APPLY_LIDOCAINE, 10.0f, 1.0f);
             } else {
                 user.sendMessage(Text.literal("You feel no effect."), true);
             }
