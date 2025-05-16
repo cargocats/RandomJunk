@@ -1,5 +1,6 @@
 package com.github.cargocats.randomjunk.item;
 
+import com.github.cargocats.randomjunk.registry.RJSounds;
 import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -16,6 +17,10 @@ public class NarcanItem extends Item {
 
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient && user.hasStatusEffect(RJStatusEffects.OVERDOSE)) {
+            user.playSound(RJSounds.SPRAY_NARCAN, 1.0f, 1.0f);
+        }
+
         if (!world.isClient) {
             ItemStack item = user.getStackInHand(hand);
 

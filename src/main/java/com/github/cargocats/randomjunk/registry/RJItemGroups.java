@@ -27,6 +27,7 @@ public class RJItemGroups {
             itemGroup.add(RJItems.JOB_APP_SPAWN_EGG);
             itemGroup.add(RJItems.NERD_SPAWN_EGG);
             itemGroup.add(RJItems.PROTEIN_DRINK);
+            itemGroup.add(RJItems.NARCAN);
         });
     }
 }

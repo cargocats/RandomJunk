@@ -25,5 +25,6 @@ public class RJModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(RJItems.CREATINE, Models.GENERATED);
         itemModelGenerator.register(RJItems.PROTEIN_DRINK, Models.GENERATED);
         itemModelGenerator.register(RJItems.LIDOCAINE, Models.GENERATED);
+        itemModelGenerator.register(RJItems.NARCAN, Models.GENERATED);
     }
 }
