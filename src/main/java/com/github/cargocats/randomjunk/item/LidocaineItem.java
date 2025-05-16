@@ -1,18 +1,15 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.PlayerData;
-import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.StateSaverAndLoader;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.registry.RJSounds;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -33,8 +30,8 @@ public class LidocaineItem extends Item {
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack item = user.getStackInHand(hand);
 
-        if (world.isClient && user.isOnFire()) {
-            user.playSound(RJSounds.APPLY_LIDOCAINE,1.0f, 1.0f);
+        if (user.isOnFire()) {
+            user.playSound(RJSounds.APPLY_LIDOCAINE,1.0f, 1.0f + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
         }
 
         if (!world.isClient) {
@@ -63,7 +60,6 @@ public class LidocaineItem extends Item {
 
                 user.extinguishWithSound();
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1));
-                user.playSound(RJSounds.APPLY_LIDOCAINE, 10.0f, 1.0f);
             } else {
                 user.sendMessage(Text.literal("You feel no effect."), true);
             }
