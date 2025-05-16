@@ -16,6 +16,7 @@ public class RandomJunkDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(RJModelGenerator::new);
         pack.addProvider(RJRecipeGenerator::new);
         pack.addProvider(RJTranslationGenerator::new);
+        pack.addProvider(RJSoundGenerator::new);
         pack.addProvider(RJDynamicRegGenerator::new);
         pack.addProvider(RJDamageTagGenerator::new);
         pack.addProvider(RJTagGenerator::new);
