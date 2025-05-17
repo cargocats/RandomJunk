@@ -3,12 +3,15 @@ package com.github.cargocats.randomjunk.item;
 import com.github.cargocats.randomjunk.PlayerData;
 import com.github.cargocats.randomjunk.StateSaverAndLoader;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
+import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.registry.RJSounds;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -19,8 +22,9 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class LidocaineItem extends Item {
-    private static final long TIME_WINDOW_TICKS = 60 * 20;
-    private static final int OVERDOSE_THRESHOLD = 5;
+    public static final long TIME_WINDOW_TICKS = 60 * 20;
+    public static final int OVERDOSE_THRESHOLD = 5;
+    public static int clientLidocaineUsages = 0;
 
     public LidocaineItem(Settings settings) {
         super(settings);
@@ -58,6 +62,7 @@ public class LidocaineItem extends Item {
                     user.sendMessage(Text.literal("You feel the burns ease and heal... (" + (OVERDOSE_THRESHOLD + 1 - playerData.overdoseList.size()) + " uses before overdose)"), true);
                 }
 
+                ServerPlayNetworking.send((ServerPlayerEntity) user, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
                 user.extinguishWithSound();
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1));
             } else {
