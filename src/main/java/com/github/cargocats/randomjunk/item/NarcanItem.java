@@ -17,7 +17,7 @@ public class NarcanItem extends Item {
 
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        if (world.isClient && user.hasStatusEffect(RJStatusEffects.OVERDOSE)) {
+        if (user.hasStatusEffect(RJStatusEffects.OVERDOSE)) {
             user.playSound(RJSounds.SPRAY_NARCAN, 1.0f, 1.0f);
         }
 
