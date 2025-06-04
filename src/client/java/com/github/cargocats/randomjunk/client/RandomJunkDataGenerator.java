@@ -1,6 +1,12 @@
 package com.github.cargocats.randomjunk.client;
 
-import com.github.cargocats.randomjunk.client.datagen.*;
+import com.github.cargocats.randomjunk.client.datagen.RJDamageTagGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJDynamicRegGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJModelGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJRecipeGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJSoundGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJTagGenerator;
+import com.github.cargocats.randomjunk.client.datagen.RJTranslationGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;

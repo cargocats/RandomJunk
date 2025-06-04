@@ -6,7 +6,6 @@ import com.github.cargocats.randomjunk.client.entity.render.state.JobAppEntityRe
 import com.github.cargocats.randomjunk.client.registry.RJEntityModelLayers;
 import com.github.cargocats.randomjunk.entity.JobAppEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 

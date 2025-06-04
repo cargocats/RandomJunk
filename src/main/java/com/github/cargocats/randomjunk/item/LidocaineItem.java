@@ -19,7 +19,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.UUID;
 
 public class LidocaineItem extends Item {
     public static final long TIME_WINDOW_TICKS = 60 * 20;

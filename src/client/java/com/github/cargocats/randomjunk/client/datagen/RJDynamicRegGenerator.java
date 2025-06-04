@@ -8,6 +8,7 @@ import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+
 import java.util.concurrent.CompletableFuture;
 
 public class RJDynamicRegGenerator extends FabricDynamicRegistryProvider {

@@ -2,7 +2,12 @@ package com.github.cargocats.randomjunk;
 
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
-import com.github.cargocats.randomjunk.registry.*;
+import com.github.cargocats.randomjunk.registry.RJDamageTypes;
+import com.github.cargocats.randomjunk.registry.RJEntityTypes;
+import com.github.cargocats.randomjunk.registry.RJItemGroups;
+import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.registry.RJSounds;
+import com.github.cargocats.randomjunk.registry.RJStatusEffects;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
