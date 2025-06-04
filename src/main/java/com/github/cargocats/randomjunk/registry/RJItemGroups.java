@@ -29,5 +29,7 @@ public class RJItemGroups {
             itemGroup.add(RJItems.PROTEIN_DRINK);
             itemGroup.add(RJItems.NARCAN);
         });
+
+        RandomJunk.LOG.info("Initialized Random Junk item groups");
     }
 }

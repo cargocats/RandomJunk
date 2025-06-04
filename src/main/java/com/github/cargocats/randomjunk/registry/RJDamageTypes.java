@@ -16,6 +16,5 @@ public class RJDamageTypes {
                 DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
                 0.1f
         ));
-
     }
 }

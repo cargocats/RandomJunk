@@ -42,7 +42,7 @@ public class RJItems {
     public static final Item NARCAN = register("narcan", NarcanItem::new);
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk items.");
+        RandomJunk.LOG.info("Initialized Random Junk items");
     }
 
     public static Item register(String id, Function<Item.Settings, Item> factory) {
