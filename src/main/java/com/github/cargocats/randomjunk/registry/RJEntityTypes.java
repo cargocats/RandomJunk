@@ -38,7 +38,7 @@ public class RJEntityTypes {
         FabricDefaultAttributeRegistry.register(JOB_APP, JobAppEntity.createJobAppAttributes());
         FabricDefaultAttributeRegistry.register(NERD, NerdEntity.createNerdAttributes());
 
-        RandomJunk.LOG.info("Initialized Random Junk entity types");
+        RandomJunk.LOG.info("Initialized Random Junk entity types.");
     }
 
     private static <T extends Entity> EntityType<T> registerEntity(String id,

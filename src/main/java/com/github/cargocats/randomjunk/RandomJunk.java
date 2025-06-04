@@ -32,7 +32,7 @@ public class RandomJunk implements ModInitializer {
         RJStatusEffects.initialize();
         RJSounds.initialize();
 
-        LOG.info("Initialized Random Junk");
+        LOG.info("Initialized Random Junk!");
 
         PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
 
