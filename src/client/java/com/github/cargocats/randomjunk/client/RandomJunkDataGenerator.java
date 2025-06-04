@@ -1,7 +1,6 @@
 package com.github.cargocats.randomjunk.client;
 
 import com.github.cargocats.randomjunk.client.datagen.*;
-import com.github.cargocats.randomjunk.registry.RJDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
@@ -25,6 +24,6 @@ public class RandomJunkDataGenerator implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, RJDamageTypes::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, RJDynamicRegGenerator::bootstrapDamageTypes);
     }
 }

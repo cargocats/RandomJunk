@@ -5,8 +5,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.entity.damage.DamageScaling;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-
 import java.util.concurrent.CompletableFuture;
 
 public class RJDynamicRegGenerator extends FabricDynamicRegistryProvider {
@@ -16,10 +17,14 @@ public class RJDynamicRegGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup, Entries entries) {
-        entries.add(RJDamageTypes.OVERDOSE, new DamageType(
+        entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.DAMAGE_TYPE));
+    }
+
+    public static void bootstrapDamageTypes(Registerable<DamageType> damageTypeRegisterable) {
+        damageTypeRegisterable.register(RJDamageTypes.OVERDOSE, new DamageType(
                 "overdose",
                 DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
-                1.0f
+                0.5f
         ));
     }
 

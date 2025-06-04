@@ -31,6 +31,7 @@ public class RandomJunk implements ModInitializer {
         RJItemGroups.initialize();
         RJStatusEffects.initialize();
         RJSounds.initialize();
+        RJDamageTypes.initialize();
 
         LOG.info("Initialized Random Junk");
 
