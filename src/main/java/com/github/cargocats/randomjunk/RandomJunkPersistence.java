@@ -10,22 +10,22 @@ import net.minecraft.world.PersistentStateType;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class StateSaverAndLoader extends PersistentState {
+public class RandomJunkPersistence extends PersistentState {
     public HashMap<UUID, PlayerData> players = new HashMap<>();
     public int lidocaineConsumed = 0;
 
-    public StateSaverAndLoader() {}
+    public RandomJunkPersistence() {}
 
     public static final Codec<UUID> UUID_CODEC = Codec.STRING.xmap(UUID::fromString, UUID::toString);
 
-    public static final Codec<StateSaverAndLoader> CODEC = RecordCodecBuilder.create(instance ->
+    public static final Codec<RandomJunkPersistence> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     Codec.INT.fieldOf("lidocaineConsumed").forGetter(s -> s.lidocaineConsumed),
                     Codec.unboundedMap(UUID_CODEC, PlayerData.PLAYER_DATA_CODEC)
                             .fieldOf("players")
                             .forGetter(s -> s.players)
             ).apply(instance, (lidocaineConsumed, players) -> {
-                StateSaverAndLoader state = new StateSaverAndLoader();
+                RandomJunkPersistence state = new RandomJunkPersistence();
 
                 state.lidocaineConsumed = lidocaineConsumed;
                 state.players = new HashMap<>(players);
@@ -34,14 +34,14 @@ public class StateSaverAndLoader extends PersistentState {
             })
     );
 
-    public static final PersistentStateType<StateSaverAndLoader> STATE_SAVER_AND_LOADER = new PersistentStateType<>(
+    public static final PersistentStateType<RandomJunkPersistence> STATE_SAVER_AND_LOADER = new PersistentStateType<>(
             RandomJunk.MOD_ID,
-            ctx -> new StateSaverAndLoader(),
-            ctx -> StateSaverAndLoader.CODEC,
+            ctx -> new RandomJunkPersistence(),
+            ctx -> RandomJunkPersistence.CODEC,
             DataFixTypes.LEVEL
     );
 
-    public static StateSaverAndLoader getState(ServerWorld world) {
+    public static RandomJunkPersistence getState(ServerWorld world) {
         return world.getPersistentStateManager().getOrCreate(STATE_SAVER_AND_LOADER);
     }
 

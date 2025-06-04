@@ -52,7 +52,7 @@ public class RandomJunk implements ModInitializer {
                 OverdoseTimerCallback.UUIDS.remove(player.getUuid());
             }
 
-            StateSaverAndLoader state = StateSaverAndLoader.getState((ServerWorld) player.getWorld());
+            RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) player.getWorld());
             UUID uuid = player.getUuid();
             PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
             ServerPlayNetworking.send(player, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
@@ -71,7 +71,7 @@ public class RandomJunk implements ModInitializer {
                         timer.remove(overdoseIdentifier);
                     }
 
-                    StateSaverAndLoader state = StateSaverAndLoader.getState((ServerWorld) livingEntity.getWorld());
+                    RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) livingEntity.getWorld());
                     UUID uuid = livingEntity.getUuid();
                     PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
 

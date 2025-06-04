@@ -1,7 +1,7 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.PlayerData;
-import com.github.cargocats.randomjunk.StateSaverAndLoader;
+import com.github.cargocats.randomjunk.RandomJunkPersistence;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.registry.RJSounds;
@@ -39,7 +39,7 @@ public class LidocaineItem extends Item {
         }
 
         if (!world.isClient) {
-            StateSaverAndLoader state = StateSaverAndLoader.getState((ServerWorld) world);
+            RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) world);
 
             if (user.isOnFire()) {
                 UUID uuid = user.getUuid();
