@@ -38,8 +38,6 @@ public class RandomJunk implements ModInitializer {
         RJSounds.initialize();
         RJDamageTypes.initialize();
 
-        LOG.info("Initialized Random Junk");
-
         PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
 
         TimerCallbackSerializer.INSTANCE.registerSerializer(OverdoseTimerCallback.ID, OverdoseTimerCallback.MAP_CODEC);
@@ -83,5 +81,7 @@ public class RandomJunk implements ModInitializer {
                 }
             }
         });
+
+        LOG.info("Initialized Random Junk");
     }
 }
