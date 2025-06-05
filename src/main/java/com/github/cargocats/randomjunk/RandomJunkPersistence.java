@@ -34,7 +34,7 @@ public class RandomJunkPersistence extends PersistentState {
             })
     );
 
-    public static final PersistentStateType<RandomJunkPersistence> STATE_SAVER_AND_LOADER = new PersistentStateType<>(
+    public static final PersistentStateType<RandomJunkPersistence> RJ_PERSISTENT_TYPE = new PersistentStateType<>(
             RandomJunk.MOD_ID,
             ctx -> new RandomJunkPersistence(),
             ctx -> RandomJunkPersistence.CODEC,
@@ -42,7 +42,7 @@ public class RandomJunkPersistence extends PersistentState {
     );
 
     public static RandomJunkPersistence getState(ServerWorld world) {
-        return world.getPersistentStateManager().getOrCreate(STATE_SAVER_AND_LOADER);
+        return world.getPersistentStateManager().getOrCreate(RJ_PERSISTENT_TYPE);
     }
 
 }
