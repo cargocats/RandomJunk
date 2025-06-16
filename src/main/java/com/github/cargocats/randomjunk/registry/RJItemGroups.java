@@ -28,8 +28,9 @@ public class RJItemGroups {
             itemGroup.add(RJItems.NERD_SPAWN_EGG);
             itemGroup.add(RJItems.PROTEIN_DRINK);
             itemGroup.add(RJItems.NARCAN);
+            itemGroup.add(RJItems.PIPE_BOMB);
         });
 
-        RandomJunk.LOG.info("Initialized Random Junk item groups");
+        RandomJunk.LOG.info("Initialized item groups");
     }
 }

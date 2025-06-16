@@ -9,8 +9,10 @@ import net.minecraft.util.Identifier;
 public class RJSounds {
     public static final SoundEvent APPLY_LIDOCAINE = registerSound("apply_lidocaine");
     public static final SoundEvent SPRAY_NARCAN = registerSound("spray_narcan");
+    public static final SoundEvent PIPE_BOMB_BEEP = registerSound("pipe_bomb_beep");
+
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk sounds");
+        RandomJunk.LOG.info("Initialized sounds");
     }
 
     private static SoundEvent registerSound(String id) {

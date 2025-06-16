@@ -16,29 +16,22 @@ import net.minecraft.util.Identifier;
 public class RJEntityTypes {
     public static final EntityType<JobAppEntity> JOB_APP = registerEntity(
             "job_app",
-            EntityType.Builder.create(
-                    JobAppEntity::new,
-                    SpawnGroup.MONSTER
-            )
+            EntityType.Builder.create(JobAppEntity::new, SpawnGroup.MONSTER)
                     .dimensions(4.0f, 8.0f)
                     .maxTrackingRange(128)
     );
 
     public static final EntityType<NerdEntity> NERD = registerEntity(
             "nerd",
-            EntityType.Builder.create(
-                    NerdEntity::new,
-                    SpawnGroup.CREATURE
-            )
-                    .dimensions(0.6f, 1.8f)
-                    .maxTrackingRange(32)
+            EntityType.Builder.create(NerdEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 1.8f).maxTrackingRange(32)
     );
 
     public static void initialize() {
         FabricDefaultAttributeRegistry.register(JOB_APP, JobAppEntity.createJobAppAttributes());
         FabricDefaultAttributeRegistry.register(NERD, NerdEntity.createNerdAttributes());
 
-        RandomJunk.LOG.info("Initialized Random Junk entity types");
+        RandomJunk.LOG.info("Initialized entity types");
     }
 
     private static <T extends Entity> EntityType<T> registerEntity(String id,

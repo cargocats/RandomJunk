@@ -16,6 +16,6 @@ public class RJStatusEffects {
             new OverdoseEffect(StatusEffectCategory.NEUTRAL, ColorHelper.getArgb(255, 0, 0)));
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk status effects");
+        RandomJunk.LOG.info("Initialized status effects");
     }
 }

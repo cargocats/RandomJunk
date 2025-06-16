@@ -3,6 +3,7 @@ package com.github.cargocats.randomjunk.registry;
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
 import com.github.cargocats.randomjunk.item.NarcanItem;
+import com.github.cargocats.randomjunk.item.PipebombItem;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EntityType;
@@ -43,13 +44,23 @@ public class RJItems {
 
     public static final Item LIDOCAINE = register("lidocaine", LidocaineItem::new);
     public static final Item NARCAN = register("narcan", NarcanItem::new);
+    public static final PipebombItem PIPE_BOMB = register("pipe_bomb", new Item.Settings(), PipebombItem::new);
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk items");
+        RandomJunk.LOG.info("Initialized items");
     }
 
     public static Item register(String id, Function<Item.Settings, Item> factory) {
         return register(keyOf(id), factory, new Item.Settings());
+    }
+
+    public static <T extends Item> T register(String name, Item.Settings settings, Function<Item.Settings, T> constructor) {
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(RandomJunk.MOD_ID, name));
+
+        T item = constructor.apply(settings.registryKey(key));
+        Registry.register(Registries.ITEM, key, item);
+
+        return item;
     }
 
     private static Item register(RegistryKey<Item> key, Function<Item.Settings, Item> factory, Item.Settings settings) {

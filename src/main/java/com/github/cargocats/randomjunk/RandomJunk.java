@@ -2,6 +2,7 @@ package com.github.cargocats.randomjunk;
 
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
+import com.github.cargocats.randomjunk.registry.RJComponents;
 import com.github.cargocats.randomjunk.registry.RJDamageTypes;
 import com.github.cargocats.randomjunk.registry.RJEntityTypes;
 import com.github.cargocats.randomjunk.registry.RJItemGroups;
@@ -23,65 +24,72 @@ import net.minecraft.world.timer.TimerCallbackSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.UUID;
-
 public class RandomJunk implements ModInitializer {
     public static final String MOD_ID = "randomjunk";
     public static final Logger LOG = LoggerFactory.getLogger(MOD_ID);
 
     @Override
     public void onInitialize() {
+        registerRegistries();
+        registerNetworking();
+        registerEvents();
+        registerTimers();
+
+        LOG.info("Initialized Random Junk");
+    }
+
+    public void registerRegistries() {
         RJEntityTypes.initialize();
         RJItems.initialize();
+        RJComponents.initialize();
         RJItemGroups.initialize();
         RJStatusEffects.initialize();
         RJSounds.initialize();
         RJDamageTypes.initialize();
+    }
 
-        PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
-
-        TimerCallbackSerializer.INSTANCE.registerSerializer(OverdoseTimerCallback.ID, OverdoseTimerCallback.MAP_CODEC);
-
+    public void registerEvents() {
         ServerPlayConnectionEvents.JOIN.register((playNetworkHandler, packetSender, minecraftServer) -> {
-            ServerPlayerEntity player = playNetworkHandler.getPlayer();
+            ServerPlayerEntity playerEntity = playNetworkHandler.getPlayer();
 
-            if (OverdoseTimerCallback.UUIDS.contains(player.getUuid())) {
-                OverdoseTimerCallback.giveEffect(player);
-                OverdoseTimerCallback.UUIDS.remove(player.getUuid());
+            if (OverdoseTimerCallback.UUIDS.contains(playerEntity.getUuid())) {
+                OverdoseTimerCallback.giveEffect(playerEntity);
+                OverdoseTimerCallback.UUIDS.remove(playerEntity.getUuid());
             }
 
-            RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) player.getWorld());
-            UUID uuid = player.getUuid();
-            PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
-            ServerPlayNetworking.send(player, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
+
+            RandomJunkPersistence persistence = RandomJunkPersistence.getState((ServerWorld) playerEntity.getWorld());
+            RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(playerEntity);
+            ServerPlayNetworking.send(playerEntity, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
         });
 
         ServerLivingEntityEvents.AFTER_DEATH.register(Identifier.of(RandomJunk.MOD_ID, "overdose_after_death"), (livingEntity, damageSource) -> {
             if (livingEntity instanceof PlayerEntity playerEntity) {
-                RandomJunk.LOG.info("{} has died", playerEntity);
-
                 MinecraftServer server = playerEntity.getServer();
+
                 if (server != null) {
                     Timer<MinecraftServer> timer = server.getSaveProperties().getMainWorldProperties().getScheduledEvents();
                     String overdoseIdentifier = "overdoseTimer" + playerEntity.getUuid();
 
-                    if (timer.getEventNames().contains(overdoseIdentifier)) {
-                        timer.remove(overdoseIdentifier);
-                    }
+                    timer.remove(overdoseIdentifier);
 
-                    RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) livingEntity.getWorld());
-                    UUID uuid = livingEntity.getUuid();
-                    PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
+                    RandomJunkPersistence persistence = RandomJunkPersistence.getState((ServerWorld) playerEntity.getWorld());
+                    RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(playerEntity);
 
-                    if (!playerData.overdoseList.isEmpty()) {
-                        ServerPlayNetworking.send((ServerPlayerEntity) livingEntity, new SyncLidocaineUsagesS2C(0));
-                        playerData.overdoseList.clear();
-                        state.markDirty();
-                    }
+                    playerData.overdoseList.clear();
+                    persistence.markDirty();
+
+                    ServerPlayNetworking.send(((ServerPlayerEntity) playerEntity), new SyncLidocaineUsagesS2C(0));
                 }
             }
         });
+    }
 
-        LOG.info("Initialized Random Junk");
+    public void registerNetworking() {
+        PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
+    }
+
+    public void registerTimers() {
+        TimerCallbackSerializer.INSTANCE.registerSerializer(OverdoseTimerCallback.ID, OverdoseTimerCallback.MAP_CODEC);
     }
 }

@@ -15,6 +15,6 @@ public class RJEntityModelLayers {
         EntityModelLayerRegistry.registerModelLayer(JOB_APP, JobAppEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(NERD, NerdEntityModel::getTexturedModelData);
 
-        RandomJunk.LOG.info("Initialized RandomJunk entity model layers");
+        RandomJunk.LOG.info("Initialized entity model layers");
     }
 }

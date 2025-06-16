@@ -11,6 +11,6 @@ public class RJDamageTypes {
             RegistryKeys.DAMAGE_TYPE, Identifier.of(RandomJunk.MOD_ID, "overdose"));
 
     public static void initialize() {
-        RandomJunk.LOG.info("Initialized Random Junk damage types");
+        RandomJunk.LOG.info("Initialized damage types");
     }
 }

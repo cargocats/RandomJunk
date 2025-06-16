@@ -3,6 +3,7 @@ package com.github.cargocats.randomjunk.client.datagen;
 import com.github.cargocats.randomjunk.registry.RJItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.item.Items;
@@ -33,6 +34,17 @@ public class RJRecipeGenerator extends FabricRecipeProvider {
                         .input(Items.GLOWSTONE_DUST)
                         .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
                         .criterion(hasItem(Items.GHAST_TEAR), conditionsFromItem(Items.GHAST_TEAR))
+                        .offerTo(recipeExporter);
+
+                createShaped(RecipeCategory.COMBAT, RJItems.PIPE_BOMB, 1)
+                        .pattern("III")
+                        .pattern("ICI")
+                        .pattern("ITI")
+                        .input('I', ConventionalItemTags.IRON_INGOTS)
+                        .input('C', Items.CLOCK)
+                        .input('T', Items.TNT)
+                        .criterion(hasItem(Items.CLOCK), conditionsFromItem(Items.CLOCK))
+                        .criterion(hasItem(Items.TNT), conditionsFromItem(Items.TNT))
                         .offerTo(recipeExporter);
             }
         };

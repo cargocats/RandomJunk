@@ -1,5 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
+import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
 import com.github.cargocats.randomjunk.registry.RJItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -26,5 +27,7 @@ public class RJModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(RJItems.PROTEIN_DRINK, Models.GENERATED);
         itemModelGenerator.register(RJItems.LIDOCAINE, Models.GENERATED);
         itemModelGenerator.register(RJItems.NARCAN, Models.GENERATED);
+
+        itemModelGenerator.registerWithTintedOverlay(RJItems.PIPE_BOMB, new PipeBombTintSource());
     }
 }

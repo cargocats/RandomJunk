@@ -25,6 +25,7 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add(RJItems.NERD_SPAWN_EGG, "Nerd Spawn Egg");
         translationBuilder.add(RJItems.JOB_APP_SPAWN_EGG, "Job App Spawn Egg");
         translationBuilder.add(RJItems.NARCAN, "Narcan");
+        translationBuilder.add(RJItems.PIPE_BOMB, "Pipe Bomb");
 
         translationBuilder.add(RJEntityTypes.JOB_APP, "Job App");
         translationBuilder.add(RJEntityTypes.NERD, "Nerd");
@@ -34,6 +35,7 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(RJSounds.APPLY_LIDOCAINE, "Apply lidocaine");
         translationBuilder.add(RJSounds.SPRAY_NARCAN, "Spray narcan");
+        translationBuilder.add(RJSounds.PIPE_BOMB_BEEP, "Pipe bomb beep");
 
         translationBuilder.add("death.attack.overdose", "%1$s died from an Overdose");
     }

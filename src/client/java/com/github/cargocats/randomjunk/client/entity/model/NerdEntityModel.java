@@ -51,6 +51,7 @@ public class NerdEntityModel extends EntityModel<NerdEntityRenderState> {
 	@Override
 	public void setAngles(NerdEntityRenderState nerdEntityRenderState) {
 		super.setAngles(nerdEntityRenderState);
+
 		this.animateWalking(NerdAnimations.WALK, nerdEntityRenderState.limbSwingAnimationProgress, nerdEntityRenderState.limbSwingAmplitude, 2.0f, 2.5f);
 		this.animate(nerdEntityRenderState.idlingAnimationState, NerdAnimations.IDLING, nerdEntityRenderState.age, 1.0f);
 		this.animate(nerdEntityRenderState.yesAnimationState, NerdAnimations.YES, nerdEntityRenderState.age, 1.0f);

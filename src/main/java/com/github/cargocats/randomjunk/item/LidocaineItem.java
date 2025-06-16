@@ -1,6 +1,5 @@
 package com.github.cargocats.randomjunk.item;
 
-import com.github.cargocats.randomjunk.PlayerData;
 import com.github.cargocats.randomjunk.RandomJunkPersistence;
 import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
@@ -39,19 +38,19 @@ public class LidocaineItem extends Item {
         }
 
         if (!world.isClient) {
-            RandomJunkPersistence state = RandomJunkPersistence.getState((ServerWorld) world);
-
             if (user.isOnFire()) {
-                UUID uuid = user.getUuid();
-                PlayerData playerData = state.players.computeIfAbsent(uuid, id -> new PlayerData());
+                RandomJunkPersistence persistence = RandomJunkPersistence.getState((ServerWorld) world);
+                RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(user);
 
-                state.lidocaineConsumed++;
+                UUID uuid = user.getUuid();
+
+                persistence.lidocaineConsumed++;
                 long timeNow = world.getTime();
 
                 playerData.overdoseList.add(timeNow);
                 playerData.overdoseList.removeIf(t -> t < (timeNow - TIME_WINDOW_TICKS));
 
-                state.markDirty();
+                persistence.markDirty();
 
                 if (playerData.overdoseList.size() > OVERDOSE_THRESHOLD) {
                     user.sendMessage(Text.literal("You are overdosing. Use narcan now...").formatted(Formatting.RED), true);

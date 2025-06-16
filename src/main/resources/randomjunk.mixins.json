@@ -4,7 +4,9 @@
   "package": "com.github.cargocats.randomjunk.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ClearAllEffectsConsumeEffectMixin"
+    "ChestAndBarrelBlockEntityMixin",
+    "ClearAllEffectsConsumeEffectMixin",
+    "ItemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

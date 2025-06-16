@@ -31,6 +31,13 @@ public class RJSoundGenerator extends FabricSoundsProvider {
                         SoundTypeBuilder.EntryBuilder.ofFile(Identifier.of(RandomJunk.MOD_ID, "spray_narcan"))
                 ).category(SoundCategory.PLAYERS)
         );
+
+        soundExporter.add(
+                RJSounds.PIPE_BOMB_BEEP,
+                SoundTypeBuilder.of(RJSounds.PIPE_BOMB_BEEP).sound(
+                        SoundTypeBuilder.EntryBuilder.ofFile(Identifier.of(RandomJunk.MOD_ID, "pipe_bomb_beep"))
+                ).category(SoundCategory.PLAYERS)
+        );
     }
 
     @Override

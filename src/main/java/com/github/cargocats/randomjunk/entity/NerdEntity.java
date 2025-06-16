@@ -52,11 +52,10 @@ public class NerdEntity extends PathAwareEntity {
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new FleeEntityGoal<>(this, JobAppEntity.class, 32.0f, 1.0, 1.5));
+        this.goalSelector.add(2, new PickupSpecificItemGoal(this, RJItems.CRANBERRY));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 32.0f));
         this.goalSelector.add(6, new LookAroundGoal(this));
         this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0f));
-
-        this.goalSelector.add(2, new PickupSpecificItemGoal(this, RJItems.CRANBERRY));
     }
 
     public static class PickupSpecificItemGoal extends Goal {
@@ -121,7 +120,7 @@ public class NerdEntity extends PathAwareEntity {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(state.getSoundGroup().getStepSound(), 1.0F, 1.0F);
+        //this.playSound(state.getSoundGroup().getStepSound(), 1.0F, 1.0F);
     }
 
     @Override
@@ -130,9 +129,7 @@ public class NerdEntity extends PathAwareEntity {
 
         if (this.getWorld().isClient) {
             this.updateAnimations();
-        }
-
-        if (!this.getWorld().isClient) {
+        } else {
             if (this.getMainHandStack().isOf(RJItems.CRANBERRY)) {
                 if (eatingCooldown <= 0) {
                     eatingCooldown = 100;
