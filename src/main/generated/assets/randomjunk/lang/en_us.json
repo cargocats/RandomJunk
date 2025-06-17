@@ -9,8 +9,10 @@
   "item.randomjunk.lidocaine": "Lidocaine",
   "item.randomjunk.narcan": "Narcan",
   "item.randomjunk.nerd_spawn_egg": "Nerd Spawn Egg",
+  "item.randomjunk.pipe_bomb": "Pipe Bomb",
   "item.randomjunk.protein_drink": "Protein Drink",
   "itemGroup.randomjunk": "Random Junk",
   "subtitles.randomjunk.apply_lidocaine": "Apply lidocaine",
+  "subtitles.randomjunk.pipe_bomb_beep": "Pipe bomb beep",
   "subtitles.randomjunk.spray_narcan": "Spray narcan"
 }

@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.client;
 
 import com.github.cargocats.randomjunk.RandomJunk;
+import com.github.cargocats.randomjunk.client.gui.OverdoseLayer;
 import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
-import com.github.cargocats.randomjunk.client.gui.OverdoseGui;
 import com.github.cargocats.randomjunk.client.registry.RJEntityModelLayers;
 import com.github.cargocats.randomjunk.client.registry.RJEntityRenderers;
 import com.github.cargocats.randomjunk.components.CountdownTimestampComponent;
@@ -13,8 +13,8 @@ import com.github.cargocats.randomjunk.registry.RJItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.HudLayerRegistrationCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.tint.TintSourceTypes;
 import net.minecraft.text.Text;
@@ -30,9 +30,7 @@ public class RandomJunkClient implements ClientModInitializer {
         RJEntityRenderers.initialize();
         registerItemTooltips();
 
-        HudLayerRegistrationCallback.EVENT.register(layeredDrawer -> {
-            layeredDrawer.attachLayerAfter(IdentifiedLayer.MISC_OVERLAYS, Identifier.of(RandomJunk.MOD_ID, "overdose_layer"), OverdoseGui::render);
-        });
+        HudElementRegistry.attachElementAfter(VanillaHudElements.STATUS_EFFECTS, Identifier.of(RandomJunk.MOD_ID, "overdose_layer"), new OverdoseLayer());
 
         ClientPlayNetworking.registerGlobalReceiver(SyncLidocaineUsagesS2C.ID, (payload, context) -> {
             RandomJunk.LOG.info("Client: received payload for sync lidocaine, usages: {}", payload.usages());

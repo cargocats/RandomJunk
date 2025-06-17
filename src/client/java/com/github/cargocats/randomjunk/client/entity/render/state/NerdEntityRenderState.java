@@ -4,11 +4,6 @@ import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.entity.AnimationState;
 
 public class NerdEntityRenderState extends LivingEntityRenderState {
-    public final AnimationState idlingAnimationState;
-    public final AnimationState yesAnimationState;
-
-    public NerdEntityRenderState() {
-        this.idlingAnimationState = new AnimationState();
-        this.yesAnimationState = new AnimationState();
-    }
+    public final AnimationState idlingAnimationState = new AnimationState();
+    public final AnimationState yesAnimationState = new AnimationState();
 }

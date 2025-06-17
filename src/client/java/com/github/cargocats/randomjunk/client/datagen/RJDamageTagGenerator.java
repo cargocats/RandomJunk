@@ -6,8 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.tag.DamageTypeTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -16,12 +15,10 @@ public class RJDamageTagGenerator extends FabricTagProvider<DamageType> {
         super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);
     }
 
+
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.ofVanilla("bypasses_armor")))
-                .add(RJDamageTypes.OVERDOSE);
-
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.ofVanilla("no_impact")))
-                .add(RJDamageTypes.OVERDOSE);
+        this.builder(DamageTypeTags.BYPASSES_ARMOR).add(RJDamageTypes.OVERDOSE);
+        this.builder(DamageTypeTags.NO_IMPACT).add(RJDamageTypes.OVERDOSE);
     }
 }

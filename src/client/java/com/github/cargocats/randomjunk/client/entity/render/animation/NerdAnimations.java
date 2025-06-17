@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.client.entity.render.animation;// Save this class in your mod and generate all required imports
 
-import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.client.render.entity.animation.AnimationDefinition;
 import net.minecraft.client.render.entity.animation.AnimationHelper;
 import net.minecraft.client.render.entity.animation.Keyframe;
 import net.minecraft.client.render.entity.animation.Transformation;
@@ -11,16 +11,7 @@ import net.minecraft.client.render.entity.animation.Transformation;
  * @author cargocat
  */
 public class NerdAnimations {
-    public static final Animation IDLING;
-    public static final Animation WALK;
-    public static final Animation YES;
-
-    public NerdAnimations() {
-
-    }
-
-    static {
-        IDLING = Animation.Builder.create(1.0F).looping()
+        public static final AnimationDefinition IDLING = AnimationDefinition.Builder.create(1.0F).looping()
                 .addBoneAnimation("right_leg", new Transformation(Transformation.Targets.ROTATE,
                         new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
                         new Keyframe(0.5F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
@@ -58,7 +49,7 @@ public class NerdAnimations {
                 ))
                 .build();
 
-        WALK = Animation.Builder.create(1.0F).looping()
+        public static final AnimationDefinition WALK = AnimationDefinition.Builder.create(1.0F).looping()
                 .addBoneAnimation("body", new Transformation(Transformation.Targets.ROTATE,
                         new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
                         new Keyframe(0.25F, AnimationHelper.createRotationalVector(1.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
@@ -110,7 +101,7 @@ public class NerdAnimations {
                 ))
                 .build();
 
-        YES = Animation.Builder.create(1.0F)
+        public static final AnimationDefinition YES = AnimationDefinition.Builder.create(1.0F)
                 .addBoneAnimation("arms", new Transformation(Transformation.Targets.ROTATE,
                         new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
                         new Keyframe(0.25F, AnimationHelper.createRotationalVector(-180.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
@@ -142,5 +133,4 @@ public class NerdAnimations {
                         new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
                 ))
                 .build();
-    }
 }

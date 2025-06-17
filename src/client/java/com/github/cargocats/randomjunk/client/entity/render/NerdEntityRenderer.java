@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class NerdEntityRenderer extends MobEntityRenderer<NerdEntity, NerdEntityRenderState, NerdEntityModel> {
     private static final Identifier TEXTURE = Identifier.of(RandomJunk.MOD_ID, "textures/entity/nerd/texture.png");
+
     public NerdEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new NerdEntityModel(context.getPart(RJEntityModelLayers.NERD)), 0.5f);
     }
@@ -28,6 +29,7 @@ public class NerdEntityRenderer extends MobEntityRenderer<NerdEntity, NerdEntity
     @Override
     public void updateRenderState(NerdEntity nerdEntity, NerdEntityRenderState nerdEntityRenderState, float f) {
         super.updateRenderState(nerdEntity, nerdEntityRenderState, f);
+
         nerdEntityRenderState.idlingAnimationState.copyFrom(nerdEntity.idlingAnimationState);
         nerdEntityRenderState.yesAnimationState.copyFrom(nerdEntity.yesAnimationState);
     }
