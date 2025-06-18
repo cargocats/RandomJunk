@@ -9,10 +9,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 public class RJItemGroups {
-    public static final RegistryKey<ItemGroup> RANDOM_JUNK_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(RandomJunk.MOD_ID, "rj_item_group"));
+    public static final RegistryKey<ItemGroup> RANDOM_JUNK_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), RandomJunk.id("rj_item_group"));
     public static final ItemGroup RANDOM_JUNK_ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(RJItems.CRANBERRY))
             .displayName(Text.translatable("itemGroup.randomjunk"))
@@ -20,15 +19,13 @@ public class RJItemGroups {
 
     public static void initialize() {
         Registry.register(Registries.ITEM_GROUP, RANDOM_JUNK_ITEM_GROUP_KEY, RANDOM_JUNK_ITEM_GROUP);
-        ItemGroupEvents.modifyEntriesEvent(RANDOM_JUNK_ITEM_GROUP_KEY).register(itemGroup -> {
-            itemGroup.add(RJItems.CRANBERRY);
-            itemGroup.add(RJItems.CREATINE);
-            itemGroup.add(RJItems.LIDOCAINE);
-            itemGroup.add(RJItems.JOB_APP_SPAWN_EGG);
-            itemGroup.add(RJItems.NERD_SPAWN_EGG);
-            itemGroup.add(RJItems.PROTEIN_DRINK);
-            itemGroup.add(RJItems.NARCAN);
-            itemGroup.add(RJItems.PIPE_BOMB);
+
+        ItemGroupEvents.modifyEntriesEvent(RANDOM_JUNK_ITEM_GROUP_KEY).register(entries -> {
+            for (var item : Registries.ITEM) {
+                if (RandomJunk.MOD_ID.equals(Registries.ITEM.getId(item).getNamespace())) {
+                    entries.add(item);
+                }
+            }
         });
 
         RandomJunk.LOG.info("Initialized item groups");

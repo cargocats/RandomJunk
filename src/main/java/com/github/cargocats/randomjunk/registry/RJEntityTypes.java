@@ -11,7 +11,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 
 public class RJEntityTypes {
     public static final EntityType<JobAppEntity> JOB_APP = registerEntity(
@@ -36,7 +35,7 @@ public class RJEntityTypes {
 
     private static <T extends Entity> EntityType<T> registerEntity(String id,
                                                              EntityType.Builder<T> builder) {
-        RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(RandomJunk.MOD_ID, id));
+        RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, RandomJunk.id(id));
 
         return Registry.register(Registries.ENTITY_TYPE, key, builder.build(key));
     }

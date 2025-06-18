@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider;
 import net.minecraft.data.DataOutput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -21,21 +20,21 @@ public class RJSoundGenerator extends FabricSoundsProvider {
         soundExporter.add(
                 RJSounds.APPLY_LIDOCAINE,
                 SoundTypeBuilder.of(RJSounds.APPLY_LIDOCAINE).sound(
-                        SoundTypeBuilder.EntryBuilder.ofFile(Identifier.of(RandomJunk.MOD_ID, "apply_lidocaine"))
+                        SoundTypeBuilder.EntryBuilder.ofFile(RandomJunk.id("apply_lidocaine"))
                 ).category(SoundCategory.PLAYERS)
         );
 
         soundExporter.add(
                 RJSounds.SPRAY_NARCAN,
                 SoundTypeBuilder.of(RJSounds.SPRAY_NARCAN).sound(
-                        SoundTypeBuilder.EntryBuilder.ofFile(Identifier.of(RandomJunk.MOD_ID, "spray_narcan"))
+                        SoundTypeBuilder.EntryBuilder.ofFile(RandomJunk.id("spray_narcan"))
                 ).category(SoundCategory.PLAYERS)
         );
 
         soundExporter.add(
                 RJSounds.PIPE_BOMB_BEEP,
                 SoundTypeBuilder.of(RJSounds.PIPE_BOMB_BEEP).sound(
-                        SoundTypeBuilder.EntryBuilder.ofFile(Identifier.of(RandomJunk.MOD_ID, "pipe_bomb_beep"))
+                        SoundTypeBuilder.EntryBuilder.ofFile(RandomJunk.id("pipe_bomb_beep"))
                 ).category(SoundCategory.PLAYERS)
         );
     }

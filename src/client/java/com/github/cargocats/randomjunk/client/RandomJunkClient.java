@@ -2,40 +2,39 @@ package com.github.cargocats.randomjunk.client;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.client.gui.OverdoseLayer;
-import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
 import com.github.cargocats.randomjunk.client.registry.RJEntityModelLayers;
 import com.github.cargocats.randomjunk.client.registry.RJEntityRenderers;
-import com.github.cargocats.randomjunk.components.CountdownTimestampComponent;
+import com.github.cargocats.randomjunk.client.registry.RJPackets;
+import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
+import com.github.cargocats.randomjunk.client.screen.PasswordScreen;
+import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
-import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.registry.RJComponents;
 import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.registry.RJScreens;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.item.tint.TintSourceTypes;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 public class RandomJunkClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        TintSourceTypes.ID_MAPPER.put(Identifier.of(RandomJunk.MOD_ID, "pipe_bomb_tint"), PipeBombTintSource.CODEC);
+        TintSourceTypes.ID_MAPPER.put(RandomJunk.id("pipe_bomb_tint"), PipeBombTintSource.CODEC);
 
+        RJPackets.initialize();
         RJEntityModelLayers.initialize();
         RJEntityRenderers.initialize();
         registerItemTooltips();
 
-        HudElementRegistry.attachElementAfter(VanillaHudElements.STATUS_EFFECTS, Identifier.of(RandomJunk.MOD_ID, "overdose_layer"), new OverdoseLayer());
+        HandledScreens.register(RJScreens.PASSWORD_SCREEN, PasswordScreen::new);
 
-        ClientPlayNetworking.registerGlobalReceiver(SyncLidocaineUsagesS2C.ID, (payload, context) -> {
-            RandomJunk.LOG.info("Client: received payload for sync lidocaine, usages: {}", payload.usages());
-            LidocaineItem.clientLidocaineUsages = payload.usages();
-        });
+        HudElementRegistry.attachElementAfter(VanillaHudElements.STATUS_EFFECTS, RandomJunk.id("overdose_layer"), new OverdoseLayer());
 
         RandomJunk.LOG.info("Initialized client!");
     }

@@ -16,7 +16,7 @@ public class RJSounds {
     }
 
     private static SoundEvent registerSound(String id) {
-        Identifier identifier = Identifier.of(RandomJunk.MOD_ID, id);
+        Identifier identifier = RandomJunk.id(id);
         return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
     }
 }

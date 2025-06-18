@@ -1,17 +1,20 @@
 package com.github.cargocats.randomjunk;
 
-import com.github.cargocats.randomjunk.delay.OverdoseTimerCallback;
+import com.github.cargocats.randomjunk.network.RJNetwork;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
+import com.github.cargocats.randomjunk.registry.RJBlockEntityTypes;
+import com.github.cargocats.randomjunk.registry.RJBlocks;
 import com.github.cargocats.randomjunk.registry.RJComponents;
 import com.github.cargocats.randomjunk.registry.RJDamageTypes;
 import com.github.cargocats.randomjunk.registry.RJEntityTypes;
 import com.github.cargocats.randomjunk.registry.RJItemGroups;
 import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.registry.RJScreens;
 import com.github.cargocats.randomjunk.registry.RJSounds;
 import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.timer.OverdoseTimerCallback;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,7 +34,6 @@ public class RandomJunk implements ModInitializer {
     @Override
     public void onInitialize() {
         registerRegistries();
-        registerNetworking();
         registerEvents();
         registerTimers();
 
@@ -39,12 +41,18 @@ public class RandomJunk implements ModInitializer {
     }
 
     public void registerRegistries() {
-        RJEntityTypes.initialize();
-        RJItems.initialize();
         RJComponents.initialize();
-        RJItemGroups.initialize();
+        RJNetwork.initialize();
+
+        RJItems.initialize();
+        RJBlocks.initialize();
+        RJBlockEntityTypes.initialize();
+        RJEntityTypes.initialize();
+        RJScreens.initialize();
         RJStatusEffects.initialize();
+
         RJSounds.initialize();
+        RJItemGroups.initialize();
         RJDamageTypes.initialize();
     }
 
@@ -63,7 +71,7 @@ public class RandomJunk implements ModInitializer {
             ServerPlayNetworking.send(playerEntity, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
         });
 
-        ServerLivingEntityEvents.AFTER_DEATH.register(Identifier.of(RandomJunk.MOD_ID, "overdose_after_death"), (livingEntity, damageSource) -> {
+        ServerLivingEntityEvents.AFTER_DEATH.register(RandomJunk.id("overdose_after_death"), (livingEntity, damageSource) -> {
             if (livingEntity instanceof PlayerEntity playerEntity) {
                 MinecraftServer server = playerEntity.getServer();
 
@@ -85,11 +93,11 @@ public class RandomJunk implements ModInitializer {
         });
     }
 
-    public void registerNetworking() {
-        PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
-    }
-
     public void registerTimers() {
         TimerCallbackSerializer.INSTANCE.registerSerializer(OverdoseTimerCallback.ID, OverdoseTimerCallback.MAP_CODEC);
+    }
+
+    public static Identifier id(String path) {
+        return Identifier.of(MOD_ID, path);
     }
 }

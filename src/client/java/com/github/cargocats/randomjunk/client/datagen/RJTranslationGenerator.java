@@ -1,5 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
+import com.github.cargocats.randomjunk.registry.RJBlocks;
 import com.github.cargocats.randomjunk.registry.RJEntityTypes;
 import com.github.cargocats.randomjunk.registry.RJItemGroups;
 import com.github.cargocats.randomjunk.registry.RJItems;
@@ -26,6 +27,8 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add(RJItems.JOB_APP_SPAWN_EGG, "Job App Spawn Egg");
         translationBuilder.add(RJItems.NARCAN, "Narcan");
         translationBuilder.add(RJItems.PIPE_BOMB, "Pipe Bomb");
+
+        translationBuilder.add(RJBlocks.TOILET_PAPER, "Toilet Paper");
 
         translationBuilder.add(RJEntityTypes.JOB_APP, "Job App");
         translationBuilder.add(RJEntityTypes.NERD, "Nerd");
