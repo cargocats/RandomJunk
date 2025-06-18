@@ -10,7 +10,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 public class JobAppEntityRenderer extends MobEntityRenderer<JobAppEntity, JobAppEntityRenderState, JobAppEntityModel> {
-    private static final Identifier TEXTURE = Identifier.of(RandomJunk.MOD_ID, "textures/entity/job_app/texture.png");
+    private static final Identifier TEXTURE = RandomJunk.id("textures/entity/job_app/texture.png");
     public JobAppEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new JobAppEntityModel(context.getPart(RJEntityModelLayers.JOB_APP)), 2.0f);
     }

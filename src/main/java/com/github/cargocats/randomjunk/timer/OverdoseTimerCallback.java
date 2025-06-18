@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.delay;
+package com.github.cargocats.randomjunk.timer;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.registry.RJStatusEffects;
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class OverdoseTimerCallback implements TimerCallback<MinecraftServer> {
     private final UUID uuid;
     public static final ArrayList<UUID> UUIDS = new ArrayList<>();
-    public static final Identifier ID = Identifier.of(RandomJunk.MOD_ID, "overdose_timer");
+    public static final Identifier ID = RandomJunk.id("overdose_timer");
 
     public static final MapCodec<OverdoseTimerCallback> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Uuids.CODEC.fieldOf("uuid").forGetter(o -> o.uuid)

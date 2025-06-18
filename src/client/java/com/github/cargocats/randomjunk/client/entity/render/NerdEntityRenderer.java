@@ -10,7 +10,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 public class NerdEntityRenderer extends MobEntityRenderer<NerdEntity, NerdEntityRenderState, NerdEntityModel> {
-    private static final Identifier TEXTURE = Identifier.of(RandomJunk.MOD_ID, "textures/entity/nerd/texture.png");
+    private static final Identifier TEXTURE = RandomJunk.id("textures/entity/nerd/texture.png");
 
     public NerdEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new NerdEntityModel(context.getPart(RJEntityModelLayers.NERD)), 0.5f);
