@@ -5,6 +5,8 @@ import com.github.cargocats.randomjunk.block.SafeBlock;
 import com.github.cargocats.randomjunk.block.ToiletPaperBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -21,12 +23,18 @@ public class RJBlocks {
                     .solid()
                     .nonOpaque()
                     .sounds(BlockSoundGroup.WOOL)
+                    .strength(0.8f)
+
     );
 
     public static final Block SAFE_BLOCK = register(
             "safe_block",
             SafeBlock::new,
             AbstractBlock.Settings.create()
+                    .mapColor(MapColor.DEEPSLATE_GRAY)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .sounds(BlockSoundGroup.ANVIL)
+                    .strength(64.0f, 2048.0f)
     );
 
     public static void initialize() {
