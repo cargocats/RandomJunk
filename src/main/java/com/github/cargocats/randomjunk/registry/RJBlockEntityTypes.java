@@ -1,10 +1,8 @@
 package com.github.cargocats.randomjunk.registry;
 
 import com.github.cargocats.randomjunk.RandomJunk;
-import com.github.cargocats.randomjunk.block.SafeBlock;
 import com.github.cargocats.randomjunk.block.entity.SafeBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

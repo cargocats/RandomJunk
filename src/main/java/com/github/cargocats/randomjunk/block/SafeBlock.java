@@ -49,7 +49,7 @@ public class SafeBlock extends BlockWithEntity {
 
             player.openHandledScreen(new ExtendedScreenHandlerFactory<SafePasswordPacket>() {
                 @Override
-                public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+                public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
                     return new PasswordScreenHandler(syncId, playerInventory, safeBlockEntity.getPos(), !safeBlockEntity.getPassword().isEmpty());
                 }
 

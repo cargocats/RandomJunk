@@ -20,7 +20,6 @@ public class PasswordScreen extends HandledScreen<PasswordScreenHandler> {
 
     private final PasswordScreenHandler handler;
     private TextFieldWidget passwordField;
-    private ButtonWidget confirmButton;
 
     public PasswordScreen(PasswordScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -43,7 +42,9 @@ public class PasswordScreen extends HandledScreen<PasswordScreenHandler> {
         addSelectableChild(passwordField);
         setInitialFocus(passwordField);
 
-        confirmButton = ButtonWidget.builder(Text.literal("Confirm").formatted(Formatting.WHITE), b -> {
+        // Send password to server
+        // Send packet to server with the block position this.handler.getBlockPos();
+        ButtonWidget confirmButton = ButtonWidget.builder(Text.literal("Confirm").formatted(Formatting.WHITE), b -> {
             String input = passwordField.getText();
             // Send password to server
             RandomJunk.LOG.info("I sent a password from the client with {}", input);

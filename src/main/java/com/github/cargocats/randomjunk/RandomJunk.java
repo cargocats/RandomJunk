@@ -65,8 +65,7 @@ public class RandomJunk implements ModInitializer {
                 OverdoseTimerCallback.UUIDS.remove(playerEntity.getUuid());
             }
 
-
-            RandomJunkPersistence persistence = RandomJunkPersistence.getState((ServerWorld) playerEntity.getWorld());
+            RandomJunkPersistence persistence = RandomJunkPersistence.getState(playerEntity.getWorld());
             RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(playerEntity);
             ServerPlayNetworking.send(playerEntity, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
         });
