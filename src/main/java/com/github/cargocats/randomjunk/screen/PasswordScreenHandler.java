@@ -15,6 +15,7 @@ public class PasswordScreenHandler extends ScreenHandler {
         super(RJScreens.PASSWORD_SCREEN, syncId);
         this.blockPos = blockPos;
         this.hasPassword = hasPassword;
+
         this.addPlayerSlots(playerInventory, 8, 98);
     }
 

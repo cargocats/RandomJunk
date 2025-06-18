@@ -1,26 +1,19 @@
 package com.github.cargocats.randomjunk.block;
 
 import com.github.cargocats.randomjunk.block.entity.SafeBlockEntity;
-import com.github.cargocats.randomjunk.network.packet.SafePasswordPacket;
-import com.github.cargocats.randomjunk.screen.PasswordScreenHandler;
 import com.mojang.serialization.MapCodec;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -45,29 +38,22 @@ public class SafeBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world instanceof ServerWorld ignored && world.getBlockEntity(pos) instanceof SafeBlockEntity safeBlockEntity) {
-
-            player.openHandledScreen(new ExtendedScreenHandlerFactory<SafePasswordPacket>() {
-                @Override
-                public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-                    return new PasswordScreenHandler(syncId, playerInventory, safeBlockEntity.getPos(), !safeBlockEntity.getPassword().isEmpty());
-                }
-
-                @Override
-                public Text getDisplayName() { return Text.literal("Password"); }
-
-                @Override
-                public SafePasswordPacket getScreenOpeningData(ServerPlayerEntity player) {
-                    return new SafePasswordPacket(safeBlockEntity.getPos(), !safeBlockEntity.getPassword().isEmpty());
-                }
-            });
+        if (world instanceof ServerWorld && world.getBlockEntity(pos) instanceof SafeBlockEntity) {
+            player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
         }
         return ActionResult.SUCCESS;
     }
 
     @Override
     protected @Nullable NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return super.createScreenHandlerFactory(state, world, pos);
+        if (!world.isClient) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof SafeBlockEntity safeBlockEntity) {
+                return safeBlockEntity.createPasswordScreenFactory();
+            }
+        }
+
+        return null;
     }
 
     @Override

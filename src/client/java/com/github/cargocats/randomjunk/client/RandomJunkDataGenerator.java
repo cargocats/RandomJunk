@@ -1,5 +1,6 @@
 package com.github.cargocats.randomjunk.client;
 
+import com.github.cargocats.randomjunk.client.datagen.RJBlockLootTables;
 import com.github.cargocats.randomjunk.client.datagen.RJDamageTagGenerator;
 import com.github.cargocats.randomjunk.client.datagen.RJDynamicRegGenerator;
 import com.github.cargocats.randomjunk.client.datagen.RJModelGenerator;
@@ -19,6 +20,7 @@ public class RandomJunkDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(RJModelGenerator::new);
+        pack.addProvider(RJBlockLootTables::new);
         pack.addProvider(RJRecipeGenerator::new);
         pack.addProvider(RJTranslationGenerator::new);
         pack.addProvider(RJSoundGenerator::new);

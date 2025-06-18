@@ -1,8 +1,9 @@
 package com.github.cargocats.randomjunk.block.entity;
 
 import com.github.cargocats.randomjunk.block.SafeBlock;
-import com.github.cargocats.randomjunk.network.packet.SafePasswordPacket;
+import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
 import com.github.cargocats.randomjunk.registry.RJBlockEntityTypes;
+import com.github.cargocats.randomjunk.screen.PasswordScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -28,7 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class SafeBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory<SafePasswordPacket> {
+public class SafeBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory<SafePasswordPacketS2C> {
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
     private final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
@@ -59,6 +61,15 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     };
 
     private String password = "";
+
+    public void setPassword(String password) {
+        this.password = password;
+        markDirty();
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
 
     protected SafeBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) { super(blockEntityType, blockPos, blockState); }
 
@@ -109,17 +120,41 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     }
 
     @Override
-    public SafePasswordPacket getScreenOpeningData(ServerPlayerEntity player) {
-        return new SafePasswordPacket(this.pos, !getPassword().isEmpty());
+    public SafePasswordPacketS2C getScreenOpeningData(ServerPlayerEntity player) {
+        return new SafePasswordPacketS2C(this.getPos(), !this.getPassword().isEmpty());
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-        markDirty();
+    public ExtendedScreenHandlerFactory<SafePasswordPacketS2C> createPasswordScreenFactory() {
+        return new ExtendedScreenHandlerFactory<>() {
+            @Override
+            public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+                return new PasswordScreenHandler(syncId, playerInventory, getPos(), !getPassword().isEmpty());
+            }
+
+            @Override
+            public Text getDisplayName() {
+                return getContainerName();
+            }
+
+            @Override
+            public SafePasswordPacketS2C getScreenOpeningData(ServerPlayerEntity player) {
+                return new SafePasswordPacketS2C(getPos(), !getPassword().isEmpty());
+            }
+        };
     }
 
-    public String getPassword() {
-        return this.password;
+    public NamedScreenHandlerFactory createContainerFactory() {
+        return new NamedScreenHandlerFactory() {
+            @Override
+            public Text getDisplayName() {
+                return getContainerName();
+            }
+
+            @Override
+            public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+                return createScreenHandler(syncId, playerInventory);
+            }
+        };
     }
 
     @Override
@@ -143,13 +178,18 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     }
 
     void setOpen(BlockState state, boolean open) {
-        this.world.setBlockState(this.getPos(), state.with(SafeBlock.OPEN, open), Block.NOTIFY_ALL);
+        if (this.world != null) {
+            this.world.setBlockState(this.getPos(), state.with(SafeBlock.OPEN, open), Block.NOTIFY_ALL);
+        }
     }
 
     void playSound(BlockState state, SoundEvent soundEvent) {
         double d = this.pos.getX() + 0.5;
         double e = this.pos.getY() + 0.5;
         double f = this.pos.getZ() + 0.5;
-        this.world.playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
+
+        if (this.world != null) {
+            this.world.playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
+        }
     }
 }

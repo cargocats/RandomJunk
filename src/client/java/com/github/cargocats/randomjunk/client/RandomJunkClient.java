@@ -33,7 +33,6 @@ public class RandomJunkClient implements ClientModInitializer {
         registerItemTooltips();
 
         HandledScreens.register(RJScreens.PASSWORD_SCREEN, PasswordScreen::new);
-
         HudElementRegistry.attachElementAfter(VanillaHudElements.STATUS_EFFECTS, RandomJunk.id("overdose_layer"), new OverdoseLayer());
 
         RandomJunk.LOG.info("Initialized client!");
