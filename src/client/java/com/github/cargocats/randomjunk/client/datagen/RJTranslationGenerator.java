@@ -29,6 +29,7 @@ public class RJTranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add(RJItems.PIPE_BOMB, "Pipe Bomb");
 
         translationBuilder.add(RJBlocks.TOILET_PAPER, "Toilet Paper");
+        translationBuilder.add(RJBlocks.SAFE_BLOCK, "Safe");
 
         translationBuilder.add(RJEntityTypes.JOB_APP, "Job App");
         translationBuilder.add(RJEntityTypes.NERD, "Nerd");
