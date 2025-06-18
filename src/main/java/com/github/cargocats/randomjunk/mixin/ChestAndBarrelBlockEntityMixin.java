@@ -1,6 +1,5 @@
 package com.github.cargocats.randomjunk.mixin;
 
-import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.registry.RJItems;
 import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;

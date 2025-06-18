@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.item;
 
-import com.github.cargocats.randomjunk.components.CountdownTimestampComponent;
+import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
 import com.github.cargocats.randomjunk.registry.RJComponents;
 import com.github.cargocats.randomjunk.registry.RJSounds;
 import net.minecraft.entity.Entity;

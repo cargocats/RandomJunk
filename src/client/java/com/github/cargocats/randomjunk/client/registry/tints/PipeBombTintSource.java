@@ -1,7 +1,6 @@
 package com.github.cargocats.randomjunk.client.registry.tints;
 
-import com.github.cargocats.randomjunk.RandomJunk;
-import com.github.cargocats.randomjunk.components.CountdownTimestampComponent;
+import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
 import com.github.cargocats.randomjunk.registry.RJComponents;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

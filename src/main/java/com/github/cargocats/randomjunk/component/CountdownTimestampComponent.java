@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.components;
+package com.github.cargocats.randomjunk.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

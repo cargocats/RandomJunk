@@ -1,10 +1,6 @@
 package com.github.cargocats.randomjunk.mixin;
 
-import com.github.cargocats.randomjunk.RandomJunk;
-import com.github.cargocats.randomjunk.item.PipebombItem;
 import com.github.cargocats.randomjunk.registry.RJItems;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -16,8 +12,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Random;
 
 @Debug(export = true)
 @Mixin(ItemEntity.class)
