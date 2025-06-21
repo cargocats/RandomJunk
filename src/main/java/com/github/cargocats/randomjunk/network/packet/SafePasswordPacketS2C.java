@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 public record SafePasswordPacketS2C(BlockPos blockPos, boolean hasPassword) implements CustomPayload {
     public static final Identifier BlOCK_POS_ID = RandomJunk.id("block_pos");
     public static final CustomPayload.Id<SafePasswordPacketS2C> ID = new CustomPayload.Id<>(BlOCK_POS_ID);
-    public static final PacketCodec<RegistryByteBuf, SafePasswordPacketS2C> CODEC =
+    public static final PacketCodec<RegistryByteBuf, SafePasswordPacketS2C> PACKET_CODEC =
             PacketCodec.tuple(
                     BlockPos.PACKET_CODEC, SafePasswordPacketS2C::blockPos,
                     PacketCodecs.BOOLEAN, SafePasswordPacketS2C::hasPassword,

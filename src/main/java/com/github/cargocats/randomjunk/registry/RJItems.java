@@ -44,6 +44,8 @@ public class RJItems {
     public static final Item NARCAN = register("narcan", NarcanItem::new);
     public static final Item PIPE_BOMB = register("pipe_bomb", PipebombItem::new, new Item.Settings());
 
+    // Register block items
+
     public static final Item TOILET_PAPER_BLOCK = register(RJBlocks.TOILET_PAPER);
     public static final Item SAFE_BLOCK = register(RJBlocks.SAFE_BLOCK);
 

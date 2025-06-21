@@ -28,10 +28,11 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class SafeBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory<SafePasswordPacketS2C> {
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
+    private String password = "";
+
     private final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
@@ -60,8 +61,6 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
         }
     };
 
-    private String password = "";
-
     public void setPassword(String password) {
         this.password = password;
         markDirty();
@@ -80,7 +79,6 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         this.password = view.getString("Password", "");
 
         if (!this.readLootTable(view)) {
@@ -115,11 +113,6 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     }
 
     @Override
-    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return super.createMenu(syncId, playerInventory, playerEntity);
-    }
-
-    @Override
     public SafePasswordPacketS2C getScreenOpeningData(ServerPlayerEntity player) {
         return new SafePasswordPacketS2C(this.getPos(), !this.getPassword().isEmpty());
     }
@@ -128,7 +121,7 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
         return new ExtendedScreenHandlerFactory<>() {
             @Override
             public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-                return new PasswordScreenHandler(syncId, playerInventory, getPos(), !getPassword().isEmpty());
+                return new PasswordScreenHandler(syncId, playerInventory, new SafePasswordPacketS2C(getPos(), !getPassword().isEmpty()));
             }
 
             @Override
@@ -138,7 +131,7 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
 
             @Override
             public SafePasswordPacketS2C getScreenOpeningData(ServerPlayerEntity player) {
-                return new SafePasswordPacketS2C(getPos(), !getPassword().isEmpty());
+                return SafeBlockEntity.this.getScreenOpeningData(player);
             }
         };
     }

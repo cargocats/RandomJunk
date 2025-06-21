@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 public class RJNetwork {
     public static void initialize() {
         PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
-        PayloadTypeRegistry.playC2S().register(AttemptOpenSafeC2S.ID, AttemptOpenSafeC2S.CODEC);
+        PayloadTypeRegistry.playC2S().register(AttemptOpenSafeC2S.ID, AttemptOpenSafeC2S.PACKET_CODEC);
 
         registerHandlers();
     }

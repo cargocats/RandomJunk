@@ -8,7 +8,6 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -38,22 +37,10 @@ public class SafeBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world instanceof ServerWorld && world.getBlockEntity(pos) instanceof SafeBlockEntity) {
-            player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+        if (world instanceof ServerWorld && world.getBlockEntity(pos) instanceof SafeBlockEntity safeBlockEntity) {
+            player.openHandledScreen(safeBlockEntity.createPasswordScreenFactory());
         }
         return ActionResult.SUCCESS;
-    }
-
-    @Override
-    protected @Nullable NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        if (!world.isClient) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof SafeBlockEntity safeBlockEntity) {
-                return safeBlockEntity.createPasswordScreenFactory();
-            }
-        }
-
-        return null;
     }
 
     @Override
