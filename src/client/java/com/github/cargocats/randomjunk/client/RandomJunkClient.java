@@ -2,16 +2,16 @@ package com.github.cargocats.randomjunk.client;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.client.gui.OverdoseLayer;
-import com.github.cargocats.randomjunk.client.registry.RJEntityModelLayers;
-import com.github.cargocats.randomjunk.client.registry.RJEntityRenderers;
-import com.github.cargocats.randomjunk.client.registry.RJPackets;
-import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
+import com.github.cargocats.randomjunk.client.init.RJEntityModelLayers;
+import com.github.cargocats.randomjunk.client.init.RJEntityRenderers;
+import com.github.cargocats.randomjunk.client.init.RJPackets;
+import com.github.cargocats.randomjunk.client.init.tints.PipeBombTintSource;
 import com.github.cargocats.randomjunk.client.screen.PasswordScreen;
 import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
-import com.github.cargocats.randomjunk.registry.RJComponents;
-import com.github.cargocats.randomjunk.registry.RJItems;
-import com.github.cargocats.randomjunk.registry.RJScreens;
+import com.github.cargocats.randomjunk.init.RJComponents;
+import com.github.cargocats.randomjunk.init.RJItems;
+import com.github.cargocats.randomjunk.init.RJScreens;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
@@ -27,9 +27,9 @@ public class RandomJunkClient implements ClientModInitializer {
     public void onInitializeClient() {
         TintSourceTypes.ID_MAPPER.put(RandomJunk.id("pipe_bomb_tint"), PipeBombTintSource.CODEC);
 
-        RJPackets.initialize();
-        RJEntityModelLayers.initialize();
-        RJEntityRenderers.initialize();
+        RJPackets.init();
+        RJEntityModelLayers.init();
+        RJEntityRenderers.init();
         registerItemTooltips();
 
         HandledScreens.register(RJScreens.PASSWORD_SCREEN, PasswordScreen::new);

@@ -1,7 +1,7 @@
 package com.github.cargocats.randomjunk.item;
 
-import com.github.cargocats.randomjunk.registry.RJSounds;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJSounds;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

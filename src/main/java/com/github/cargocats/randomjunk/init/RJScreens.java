@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
@@ -19,7 +19,7 @@ public class RJScreens {
         return Registry.register(Registries.SCREEN_HANDLER, RandomJunk.id(name), new ExtendedScreenHandlerType<>(factory, codec));
     }
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized screen handlers");
     }
 

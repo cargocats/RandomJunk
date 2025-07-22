@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.registry.RJDamageTypes;
+import com.github.cargocats.randomjunk.init.RJDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.entity.damage.DamageScaling;

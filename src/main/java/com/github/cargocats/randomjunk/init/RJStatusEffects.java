@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.entity.effect.OverdoseEffect;
@@ -14,7 +14,7 @@ public class RJStatusEffects {
             Registries.STATUS_EFFECT, RandomJunk.id("overdose"),
             new OverdoseEffect(StatusEffectCategory.NEUTRAL, ColorHelper.getArgb(255, 0, 0)));
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized status effects");
     }
 }

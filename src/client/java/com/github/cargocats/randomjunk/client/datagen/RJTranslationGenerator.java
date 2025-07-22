@@ -1,11 +1,11 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.registry.RJBlocks;
-import com.github.cargocats.randomjunk.registry.RJEntityTypes;
-import com.github.cargocats.randomjunk.registry.RJItemGroups;
-import com.github.cargocats.randomjunk.registry.RJItems;
-import com.github.cargocats.randomjunk.registry.RJSounds;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJBlocks;
+import com.github.cargocats.randomjunk.init.RJEntityTypes;
+import com.github.cargocats.randomjunk.init.RJItemGroups;
+import com.github.cargocats.randomjunk.init.RJItems;
+import com.github.cargocats.randomjunk.init.RJSounds;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;

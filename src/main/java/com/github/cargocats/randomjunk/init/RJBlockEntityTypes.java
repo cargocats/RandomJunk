@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.block.entity.SafeBlockEntity;
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class RJBlockEntityTypes {
     public static final BlockEntityType<SafeBlockEntity> SAFE_BLOCK = register("safe_block", SafeBlockEntity::new, RJBlocks.SAFE_BLOCK);
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized block entity types");
     }
 

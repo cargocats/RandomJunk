@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
@@ -19,7 +19,7 @@ public class RJComponents {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, id, (builderOperator.apply(ComponentType.builder())).build());
     }
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized components");
     }
 }

@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.block.SafeBlock;
@@ -37,7 +37,7 @@ public class RJBlocks {
                     .strength(64.0f, 2048.0f)
     );
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized blocks");
     }
 

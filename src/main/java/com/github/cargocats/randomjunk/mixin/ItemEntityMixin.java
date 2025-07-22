@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.mixin;
 
-import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.init.RJItems;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;

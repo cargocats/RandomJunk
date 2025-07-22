@@ -2,7 +2,7 @@ package com.github.cargocats.randomjunk.block.entity;
 
 import com.github.cargocats.randomjunk.block.SafeBlock;
 import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
-import com.github.cargocats.randomjunk.registry.RJBlockEntityTypes;
+import com.github.cargocats.randomjunk.init.RJBlockEntityTypes;
 import com.github.cargocats.randomjunk.screen.PasswordScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;

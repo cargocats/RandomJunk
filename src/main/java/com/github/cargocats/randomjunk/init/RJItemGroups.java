@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -17,7 +17,7 @@ public class RJItemGroups {
             .displayName(Text.translatable("itemGroup.randomjunk"))
             .build();
 
-    public static void initialize() {
+    public static void init() {
         Registry.register(Registries.ITEM_GROUP, RANDOM_JUNK_ITEM_GROUP_KEY, RANDOM_JUNK_ITEM_GROUP);
 
         ItemGroupEvents.modifyEntriesEvent(RANDOM_JUNK_ITEM_GROUP_KEY).register(entries -> {

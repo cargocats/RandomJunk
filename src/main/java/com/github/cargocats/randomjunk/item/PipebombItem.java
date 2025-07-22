@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
-import com.github.cargocats.randomjunk.registry.RJComponents;
-import com.github.cargocats.randomjunk.registry.RJSounds;
+import com.github.cargocats.randomjunk.init.RJComponents;
+import com.github.cargocats.randomjunk.init.RJSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;

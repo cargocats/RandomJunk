@@ -1,7 +1,7 @@
 package com.github.cargocats.randomjunk.timer;
 
 import com.github.cargocats.randomjunk.RandomJunk;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.effect.StatusEffectInstance;

@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.client.gui;
 
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;

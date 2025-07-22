@@ -2,16 +2,16 @@ package com.github.cargocats.randomjunk;
 
 import com.github.cargocats.randomjunk.network.RJNetwork;
 import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
-import com.github.cargocats.randomjunk.registry.RJBlockEntityTypes;
-import com.github.cargocats.randomjunk.registry.RJBlocks;
-import com.github.cargocats.randomjunk.registry.RJComponents;
-import com.github.cargocats.randomjunk.registry.RJDamageTypes;
-import com.github.cargocats.randomjunk.registry.RJEntityTypes;
-import com.github.cargocats.randomjunk.registry.RJItemGroups;
-import com.github.cargocats.randomjunk.registry.RJItems;
-import com.github.cargocats.randomjunk.registry.RJScreens;
-import com.github.cargocats.randomjunk.registry.RJSounds;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJBlockEntityTypes;
+import com.github.cargocats.randomjunk.init.RJBlocks;
+import com.github.cargocats.randomjunk.init.RJComponents;
+import com.github.cargocats.randomjunk.init.RJDamageTypes;
+import com.github.cargocats.randomjunk.init.RJEntityTypes;
+import com.github.cargocats.randomjunk.init.RJItemGroups;
+import com.github.cargocats.randomjunk.init.RJItems;
+import com.github.cargocats.randomjunk.init.RJScreens;
+import com.github.cargocats.randomjunk.init.RJSounds;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import com.github.cargocats.randomjunk.timer.OverdoseTimerCallback;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -41,19 +41,19 @@ public class RandomJunk implements ModInitializer {
     }
 
     public void registerRegistries() {
-        RJComponents.initialize();
+        RJComponents.init();
         RJNetwork.initialize();
 
-        RJItems.initialize();
-        RJBlocks.initialize();
-        RJBlockEntityTypes.initialize();
-        RJEntityTypes.initialize();
-        RJScreens.initialize();
-        RJStatusEffects.initialize();
+        RJItems.init();
+        RJBlocks.init();
+        RJBlockEntityTypes.init();
+        RJEntityTypes.init();
+        RJScreens.init();
+        RJStatusEffects.init();
 
-        RJSounds.initialize();
-        RJItemGroups.initialize();
-        RJDamageTypes.initialize();
+        RJSounds.init();
+        RJItemGroups.init();
+        RJDamageTypes.init();
     }
 
     public void registerEvents() {

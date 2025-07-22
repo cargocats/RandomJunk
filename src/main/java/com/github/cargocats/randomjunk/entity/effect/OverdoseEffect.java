@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.entity.effect;
 
-import com.github.cargocats.randomjunk.registry.RJDamageTypes;
+import com.github.cargocats.randomjunk.init.RJDamageTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;

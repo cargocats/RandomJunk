@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.registry.RJBlocks;
+import com.github.cargocats.randomjunk.init.RJBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.registry.RegistryWrapper;

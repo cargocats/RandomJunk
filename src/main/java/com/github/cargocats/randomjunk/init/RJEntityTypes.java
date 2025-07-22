@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.entity.JobAppEntity;
@@ -26,7 +26,7 @@ public class RJEntityTypes {
                     .dimensions(0.6f, 1.8f).maxTrackingRange(32)
     );
 
-    public static void initialize() {
+    public static void init() {
         FabricDefaultAttributeRegistry.register(JOB_APP, JobAppEntity.createJobAppAttributes());
         FabricDefaultAttributeRegistry.register(NERD, NerdEntity.createNerdAttributes());
 

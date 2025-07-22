@@ -1,7 +1,7 @@
-package com.github.cargocats.randomjunk.client.registry.tints;
+package com.github.cargocats.randomjunk.client.init.tints;
 
 import com.github.cargocats.randomjunk.component.CountdownTimestampComponent;
-import com.github.cargocats.randomjunk.registry.RJComponents;
+import com.github.cargocats.randomjunk.init.RJComponents;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.client.render.item.tint.TintSource;

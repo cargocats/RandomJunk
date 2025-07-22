@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.item.LidocaineItem;
@@ -49,7 +49,7 @@ public class RJItems {
     public static final Item TOILET_PAPER_BLOCK = register(RJBlocks.TOILET_PAPER);
     public static final Item SAFE_BLOCK = register(RJBlocks.SAFE_BLOCK);
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized items");
     }
 

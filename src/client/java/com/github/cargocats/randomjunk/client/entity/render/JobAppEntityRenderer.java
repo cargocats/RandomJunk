@@ -3,7 +3,7 @@ package com.github.cargocats.randomjunk.client.entity.render;
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.client.entity.model.JobAppEntityModel;
 import com.github.cargocats.randomjunk.client.entity.render.state.JobAppEntityRenderState;
-import com.github.cargocats.randomjunk.client.registry.RJEntityModelLayers;
+import com.github.cargocats.randomjunk.client.init.RJEntityModelLayers;
 import com.github.cargocats.randomjunk.entity.JobAppEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;

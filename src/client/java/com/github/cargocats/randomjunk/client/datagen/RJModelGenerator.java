@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.client.registry.tints.PipeBombTintSource;
-import com.github.cargocats.randomjunk.registry.RJBlocks;
-import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.client.init.tints.PipeBombTintSource;
+import com.github.cargocats.randomjunk.init.RJBlocks;
+import com.github.cargocats.randomjunk.init.RJItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.BlockStateModelGenerator;

@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.registry;
+package com.github.cargocats.randomjunk.init;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import net.minecraft.registry.Registries;
@@ -11,7 +11,7 @@ public class RJSounds {
     public static final SoundEvent SPRAY_NARCAN = registerSound("spray_narcan");
     public static final SoundEvent PIPE_BOMB_BEEP = registerSound("pipe_bomb_beep");
 
-    public static void initialize() {
+    public static void init() {
         RandomJunk.LOG.info("Initialized sounds");
     }
 

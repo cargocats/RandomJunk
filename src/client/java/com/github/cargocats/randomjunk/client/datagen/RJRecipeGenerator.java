@@ -1,6 +1,6 @@
 package com.github.cargocats.randomjunk.client.datagen;
 
-import com.github.cargocats.randomjunk.registry.RJItems;
+import com.github.cargocats.randomjunk.init.RJItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;

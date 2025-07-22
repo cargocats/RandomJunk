@@ -1,7 +1,7 @@
 package com.github.cargocats.randomjunk.mixin;
 
 import com.github.cargocats.randomjunk.RandomJunk;
-import com.github.cargocats.randomjunk.registry.RJStatusEffects;
+import com.github.cargocats.randomjunk.init.RJStatusEffects;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.entity.LivingEntity;
