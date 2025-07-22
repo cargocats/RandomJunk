@@ -21,7 +21,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-
 public class SafeBlock extends BlockWithEntity {
     public static final MapCodec<SafeBlock> CODEC = createCodec(SafeBlock::new);
     public static final EnumProperty<Direction> FACING = Properties.FACING;

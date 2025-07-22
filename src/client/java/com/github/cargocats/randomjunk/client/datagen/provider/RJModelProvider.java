@@ -16,7 +16,6 @@ import net.minecraft.client.data.VariantsBlockModelDefinitionCreator;
 import net.minecraft.client.render.model.json.ModelVariantOperator;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 import static net.minecraft.client.data.BlockStateModelGenerator.createWeightedVariant;
@@ -30,14 +29,12 @@ public class RJModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerAxisRotated(RJBlocks.TOILET_PAPER, TexturedModel.CUBE_COLUMN, TexturedModel.CUBE_COLUMN_HORIZONTAL);
 
-
-        Identifier identifier = TextureMap.getSubId(RJBlocks.SAFE_BLOCK, "_front_open");
-
+        // Safe block
         WeightedVariant weightedVariant = createWeightedVariant(TexturedModel.CUBE_TOP.upload(RJBlocks.SAFE_BLOCK, blockStateModelGenerator.modelCollector));
         WeightedVariant weightedVariant2 = createWeightedVariant(
                 TexturedModel.CUBE_TOP
                         .get(RJBlocks.SAFE_BLOCK)
-                        .textures(textureMap -> textureMap.put(TextureKey.TOP, identifier))
+                        .textures(textureMap -> textureMap.put(TextureKey.TOP, TextureMap.getSubId(RJBlocks.SAFE_BLOCK, "_front_open")))
                         .upload(RJBlocks.SAFE_BLOCK, "_open", blockStateModelGenerator.modelCollector)
         );
 
@@ -49,12 +46,11 @@ public class RJModelProvider extends FabricModelProvider {
                 .register(Direction.WEST, BlockStateModelGenerator.ROTATE_X_90.then(BlockStateModelGenerator.ROTATE_Y_270))
                 .register(Direction.EAST, BlockStateModelGenerator.ROTATE_X_90.then(BlockStateModelGenerator.ROTATE_Y_90));
 
-        blockStateModelGenerator.blockStateCollector
-                .accept(
-                        VariantsBlockModelDefinitionCreator.of(RJBlocks.SAFE_BLOCK)
-                                .with(BlockStateVariantMap.models(Properties.OPEN).register(false, weightedVariant).register(true, weightedVariant2))
-                                .coordinate(UP_DEFAULT_ROTATION_OPERATIONS)
-                );
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockModelDefinitionCreator.of(RJBlocks.SAFE_BLOCK)
+                        .with(BlockStateVariantMap.models(Properties.OPEN).register(false, weightedVariant).register(true, weightedVariant2))
+                        .coordinate(UP_DEFAULT_ROTATION_OPERATIONS)
+        );
     }
 
     @Override

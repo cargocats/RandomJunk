@@ -7,11 +7,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 public class RJPackets {
     public static void init() {
-        RandomJunk.LOG.info("Initialized client packets");
-
         ClientPlayNetworking.registerGlobalReceiver(SyncLidocaineUsagesS2C.ID, (payload, context) -> {
             RandomJunk.LOG.info("Client: received payload for sync lidocaine, usages: {}", payload.usages());
             LidocaineItem.clientLidocaineUsages = payload.usages();
         });
+
+        RandomJunk.LOG.info("Initialized client packets");
     }
 }

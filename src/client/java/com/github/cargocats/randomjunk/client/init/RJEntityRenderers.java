@@ -10,6 +10,7 @@ public class RJEntityRenderers {
     public static void init() {
         EntityRendererRegistry.register(RJEntityTypes.JOB_APP, JobAppEntityRenderer::new);
         EntityRendererRegistry.register(RJEntityTypes.NERD, NerdEntityRenderer::new);
+
         RandomJunk.LOG.info("Initialized entity renderers");
     }
 }

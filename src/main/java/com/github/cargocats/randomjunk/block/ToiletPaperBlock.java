@@ -19,14 +19,12 @@ public class ToiletPaperBlock extends PillarBlock {
 
     public ToiletPaperBlock(Settings settings) {
         super(settings);
-
         this.setDefaultState(this.getStateManager().getDefaultState().with(AXIS, Direction.Axis.Y).with(ROLLS, 2));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-
         builder.add(ROLLS);
     }
 }

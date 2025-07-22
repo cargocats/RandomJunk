@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
@@ -128,6 +129,8 @@ public class RJItems {
         if (item instanceof BlockItem blockItem) {
             blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
         }
+
+        RJItemGroups.itemsToGroup.add(new ItemStack(item));
 
         return Registry.register(Registries.ITEM, key, item);
     }

@@ -39,10 +39,8 @@ public class PasswordScreen extends HandledScreen<PasswordScreenHandler> {
         setInitialFocus(passwordField);
 
         ButtonWidget confirmButton = ButtonWidget.builder(Text.literal("Confirm").formatted(Formatting.WHITE), b -> {
-
             String input = passwordField.getText();
             ClientPlayNetworking.send(new AttemptOpenSafeC2S(this.handler.getBlockPos(), input));
-
         }).dimensions(x + 10, y + 50, 156, 20).build();
 
         addDrawableChild(confirmButton);

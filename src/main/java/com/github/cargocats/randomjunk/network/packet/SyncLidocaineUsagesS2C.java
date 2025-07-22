@@ -10,7 +10,11 @@ import net.minecraft.util.Identifier;
 public record SyncLidocaineUsagesS2C(int usages) implements CustomPayload {
     public static final Identifier SYNC_LIDOCAINE_PAYLOAD_ID = RandomJunk.id("sync_lidocaine_usages");
     public static final CustomPayload.Id<SyncLidocaineUsagesS2C> ID = new CustomPayload.Id<>(SYNC_LIDOCAINE_PAYLOAD_ID);
-    public static final PacketCodec<RegistryByteBuf, SyncLidocaineUsagesS2C> CODEC = PacketCodec.tuple(PacketCodecs.INTEGER, SyncLidocaineUsagesS2C::usages, SyncLidocaineUsagesS2C::new);
+    public static final PacketCodec<RegistryByteBuf, SyncLidocaineUsagesS2C> CODEC = PacketCodec.tuple(
+            PacketCodecs.INTEGER,
+            SyncLidocaineUsagesS2C::usages,
+            SyncLidocaineUsagesS2C::new
+    );
 
     @Override
     public Id<? extends CustomPayload> getId() {

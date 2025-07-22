@@ -1,7 +1,6 @@
 package com.github.cargocats.randomjunk.entity;
 
 import com.github.cargocats.randomjunk.init.RJItems;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -24,7 +23,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -53,9 +51,9 @@ public class NerdEntity extends PathAwareEntity {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new FleeEntityGoal<>(this, JobAppEntity.class, 32.0f, 1.0, 1.5));
         this.goalSelector.add(2, new PickupSpecificItemGoal(this, RJItems.CRANBERRY));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 32.0f));
-        this.goalSelector.add(6, new LookAroundGoal(this));
-        this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0f));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 32.0f));
+        this.goalSelector.add(3, new LookAroundGoal(this));
+        this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0f));
     }
 
     public static class PickupSpecificItemGoal extends Goal {
@@ -119,11 +117,6 @@ public class NerdEntity extends PathAwareEntity {
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, BlockState state) {
-        //this.playSound(state.getSoundGroup().getStepSound(), 1.0F, 1.0F);
-    }
-
-    @Override
     public void tick() {
         super.tick();
 
@@ -138,7 +131,6 @@ public class NerdEntity extends PathAwareEntity {
                     eatingCooldown--;
                 }
             } else {
-                // Not holding cranberry
                 eatingCooldown = 20;
             }
         }
