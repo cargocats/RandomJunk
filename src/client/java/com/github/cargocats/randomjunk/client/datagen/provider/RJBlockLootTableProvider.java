@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.client.datagen;
+package com.github.cargocats.randomjunk.client.datagen.provider;
 
 import com.github.cargocats.randomjunk.init.RJBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -7,8 +7,8 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RJBlockLootTables extends FabricBlockLootTableProvider {
-    public RJBlockLootTables(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+public class RJBlockLootTableProvider extends FabricBlockLootTableProvider {
+    public RJBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
 

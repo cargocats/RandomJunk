@@ -11,7 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
-      "com.github.cargocats.randomjunk.client.RandomJunkDataGenerator"
+      "com.github.cargocats.randomjunk.client.datagen.RandomJunkDataGenerator"
     ],
     "client": [
       "com.github.cargocats.randomjunk.client.RandomJunkClient"

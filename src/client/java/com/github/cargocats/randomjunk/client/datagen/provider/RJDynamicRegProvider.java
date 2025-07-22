@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.client.datagen;
+package com.github.cargocats.randomjunk.client.datagen.provider;
 
 import com.github.cargocats.randomjunk.init.RJDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -11,8 +11,8 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RJDynamicRegGenerator extends FabricDynamicRegistryProvider {
-    public RJDynamicRegGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+public class RJDynamicRegProvider extends FabricDynamicRegistryProvider {
+    public RJDynamicRegProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 

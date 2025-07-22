@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.client.datagen;
+package com.github.cargocats.randomjunk.client.datagen.provider;
 
 import com.github.cargocats.randomjunk.client.init.tints.PipeBombTintSource;
 import com.github.cargocats.randomjunk.init.RJBlocks;
@@ -21,8 +21,8 @@ import net.minecraft.util.math.Direction;
 
 import static net.minecraft.client.data.BlockStateModelGenerator.createWeightedVariant;
 
-public class RJModelGenerator extends FabricModelProvider {
-    public RJModelGenerator(FabricDataOutput output) {
+public class RJModelProvider extends FabricModelProvider {
+    public RJModelProvider(FabricDataOutput output) {
         super(output);
     }
 

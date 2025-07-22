@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.client.datagen;
+package com.github.cargocats.randomjunk.client.datagen.provider;
 
 import com.github.cargocats.randomjunk.RandomJunk;
 import com.github.cargocats.randomjunk.init.RJSounds;
@@ -10,8 +10,8 @@ import net.minecraft.sound.SoundCategory;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RJSoundGenerator extends FabricSoundsProvider {
-    public RJSoundGenerator(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+public class RJSoundProvider extends FabricSoundsProvider {
+    public RJSoundProvider(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 

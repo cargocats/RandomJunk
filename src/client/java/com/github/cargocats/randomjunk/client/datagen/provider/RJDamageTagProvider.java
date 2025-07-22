@@ -1,4 +1,4 @@
-package com.github.cargocats.randomjunk.client.datagen;
+package com.github.cargocats.randomjunk.client.datagen.provider;
 
 import com.github.cargocats.randomjunk.init.RJDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -10,8 +10,8 @@ import net.minecraft.registry.tag.DamageTypeTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RJDamageTagGenerator extends FabricTagProvider<DamageType> {
-    public RJDamageTagGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+public class RJDamageTagProvider extends FabricTagProvider<DamageType> {
+    public RJDamageTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);
     }
 
