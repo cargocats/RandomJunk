@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.block.entity;
 
 import com.github.cargocats.randomjunk.block.SafeBlock;
-import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
 import com.github.cargocats.randomjunk.init.RJBlockEntityTypes;
+import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
 import com.github.cargocats.randomjunk.screen.PasswordScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
@@ -53,7 +53,7 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
         @Override
         protected boolean isPlayerViewing(PlayerEntity player) {
             if (player.currentScreenHandler instanceof GenericContainerScreenHandler) {
-                Inventory inventory = ((GenericContainerScreenHandler)player.currentScreenHandler).getInventory();
+                Inventory inventory = ((GenericContainerScreenHandler) player.currentScreenHandler).getInventory();
                 return inventory == SafeBlockEntity.this;
             } else {
                 return false;
@@ -70,7 +70,9 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
         return this.password;
     }
 
-    protected SafeBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) { super(blockEntityType, blockPos, blockState); }
+    protected SafeBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
+        super(blockEntityType, blockPos, blockState);
+    }
 
     public SafeBlockEntity(BlockPos pos, BlockState state) {
         this(RJBlockEntityTypes.SAFE_BLOCK, pos, state);
@@ -96,16 +98,24 @@ public class SafeBlockEntity extends LootableContainerBlockEntity implements Ext
     }
 
     @Override
-    public int size() { return 27; }
+    public int size() {
+        return 27;
+    }
 
     @Override
-    protected Text getContainerName() { return Text.literal("Safe"); }
+    protected Text getContainerName() {
+        return Text.literal("Safe");
+    }
 
     @Override
-    protected DefaultedList<ItemStack> getHeldStacks() { return this.inventory; }
+    protected DefaultedList<ItemStack> getHeldStacks() {
+        return this.inventory;
+    }
 
     @Override
-    protected void setHeldStacks(DefaultedList<ItemStack> inventory) { this.inventory = inventory; }
+    protected void setHeldStacks(DefaultedList<ItemStack> inventory) {
+        this.inventory = inventory;
+    }
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {

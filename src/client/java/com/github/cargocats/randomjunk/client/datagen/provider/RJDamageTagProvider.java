@@ -15,7 +15,6 @@ public class RJDamageTagProvider extends FabricTagProvider<DamageType> {
         super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);
     }
 
-
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         this.builder(DamageTypeTags.BYPASSES_ARMOR).add(RJDamageTypes.OVERDOSE);

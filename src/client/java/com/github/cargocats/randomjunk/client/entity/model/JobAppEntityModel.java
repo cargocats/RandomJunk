@@ -12,6 +12,7 @@ import net.minecraft.client.render.entity.model.EntityModel;
 
 public class JobAppEntityModel extends EntityModel<JobAppEntityRenderState> {
     private final ModelPart root;
+
     public JobAppEntityModel(ModelPart root) {
         super(root);
         this.root = root.getChild("root");

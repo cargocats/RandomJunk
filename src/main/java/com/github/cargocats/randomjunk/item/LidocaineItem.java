@@ -1,8 +1,8 @@
 package com.github.cargocats.randomjunk.item;
 
 import com.github.cargocats.randomjunk.RandomJunkPersistence;
-import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.init.RJSounds;
+import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.timer.OverdoseTimerCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -34,7 +34,7 @@ public class LidocaineItem extends Item {
         ItemStack item = user.getStackInHand(hand);
 
         if (user.isOnFire()) {
-            user.playSound(RJSounds.APPLY_LIDOCAINE,1.0f, 1.0f + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
+            user.playSound(RJSounds.APPLY_LIDOCAINE, 1.0f, 1.0f + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
         }
 
         if (!world.isClient) {

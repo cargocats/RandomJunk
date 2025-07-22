@@ -1,9 +1,9 @@
 package com.github.cargocats.randomjunk.screen;
 
 import com.github.cargocats.randomjunk.block.entity.SafeBlockEntity;
-import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
 import com.github.cargocats.randomjunk.init.RJBlocks;
 import com.github.cargocats.randomjunk.init.RJScreens;
+import com.github.cargocats.randomjunk.network.packet.SafePasswordPacketS2C;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;

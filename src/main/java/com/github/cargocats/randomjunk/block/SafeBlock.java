@@ -33,7 +33,9 @@ public class SafeBlock extends BlockWithEntity {
     }
 
     @Override
-    public MapCodec<? extends BlockWithEntity> getCodec() { return CODEC; }
+    public MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -52,7 +54,9 @@ public class SafeBlock extends BlockWithEntity {
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) { return new SafeBlockEntity(pos, state); }
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new SafeBlockEntity(pos, state);
+    }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

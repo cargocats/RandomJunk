@@ -29,10 +29,10 @@ public record PipeBombTintSource(int defaultColor) implements TintSource {
             long timeStart = countdownTimerComponent.start();
             long timeEnd = countdownTimerComponent.end();
 
-            float progress = (float)(world.getTime() - timeStart) / (float)(timeEnd - timeStart);
+            float progress = (float) (world.getTime() - timeStart) / (float) (timeEnd - timeStart);
             progress = Math.clamp(progress, 0, 1);
 
-            return ColorHelper.getArgb((int) (255 * progress), 255, 0,0);
+            return ColorHelper.getArgb((int) (255 * progress), 255, 0, 0);
         }
 
         return defaultColor;

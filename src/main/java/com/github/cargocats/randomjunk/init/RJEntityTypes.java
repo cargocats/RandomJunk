@@ -34,7 +34,7 @@ public class RJEntityTypes {
     }
 
     private static <T extends Entity> EntityType<T> registerEntity(String id,
-                                                             EntityType.Builder<T> builder) {
+                                                                   EntityType.Builder<T> builder) {
         RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, RandomJunk.id(id));
 
         return Registry.register(Registries.ENTITY_TYPE, key, builder.build(key));

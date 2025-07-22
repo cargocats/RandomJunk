@@ -1,7 +1,5 @@
 package com.github.cargocats.randomjunk;
 
-import com.github.cargocats.randomjunk.network.RJNetwork;
-import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.init.RJBlockEntityTypes;
 import com.github.cargocats.randomjunk.init.RJBlocks;
 import com.github.cargocats.randomjunk.init.RJComponents;
@@ -12,6 +10,8 @@ import com.github.cargocats.randomjunk.init.RJItems;
 import com.github.cargocats.randomjunk.init.RJScreens;
 import com.github.cargocats.randomjunk.init.RJSounds;
 import com.github.cargocats.randomjunk.init.RJStatusEffects;
+import com.github.cargocats.randomjunk.network.RJNetwork;
+import com.github.cargocats.randomjunk.network.packet.SyncLidocaineUsagesS2C;
 import com.github.cargocats.randomjunk.timer.OverdoseTimerCallback;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
