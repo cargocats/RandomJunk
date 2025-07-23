@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.text.Text;
 
 public class RJNetwork {
-    public static void initialize() {
+    public static void init() {
         PayloadTypeRegistry.playS2C().register(SyncLidocaineUsagesS2C.ID, SyncLidocaineUsagesS2C.CODEC);
         PayloadTypeRegistry.playC2S().register(AttemptOpenSafeC2S.ID, AttemptOpenSafeC2S.PACKET_CODEC);
 

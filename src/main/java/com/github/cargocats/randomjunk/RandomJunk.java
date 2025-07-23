@@ -4,6 +4,7 @@ import com.github.cargocats.randomjunk.init.RJBlockEntityTypes;
 import com.github.cargocats.randomjunk.init.RJBlocks;
 import com.github.cargocats.randomjunk.init.RJComponents;
 import com.github.cargocats.randomjunk.init.RJDamageTypes;
+import com.github.cargocats.randomjunk.init.RJDataAttachments;
 import com.github.cargocats.randomjunk.init.RJEntityTypes;
 import com.github.cargocats.randomjunk.init.RJItemGroups;
 import com.github.cargocats.randomjunk.init.RJItems;
@@ -20,12 +21,13 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.timer.Timer;
 import net.minecraft.world.timer.TimerCallbackSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 
 public class RandomJunk implements ModInitializer {
     public static final String MOD_ID = "randomjunk";
@@ -42,7 +44,8 @@ public class RandomJunk implements ModInitializer {
 
     public void registerRegistries() {
         RJComponents.init();
-        RJNetwork.initialize();
+        RJNetwork.init();
+        RJDataAttachments.init();
 
         RJItems.init();
         RJBlocks.init();
@@ -65,9 +68,7 @@ public class RandomJunk implements ModInitializer {
                 OverdoseTimerCallback.UUIDS.remove(playerEntity.getUuid());
             }
 
-            RandomJunkPersistence persistence = RandomJunkPersistence.getState(playerEntity.getWorld());
-            RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(playerEntity);
-            ServerPlayNetworking.send(playerEntity, new SyncLidocaineUsagesS2C(playerData.overdoseList.size()));
+            ServerPlayNetworking.send(playerEntity, new SyncLidocaineUsagesS2C(playerEntity.getAttachedOrCreate(RJDataAttachments.OVERDOSE_LIST).size()));
         });
 
         ServerLivingEntityEvents.AFTER_DEATH.register(RandomJunk.id("overdose_after_death"), (livingEntity, damageSource) -> {
@@ -80,12 +81,7 @@ public class RandomJunk implements ModInitializer {
 
                     timer.remove(overdoseIdentifier);
 
-                    RandomJunkPersistence persistence = RandomJunkPersistence.getState((ServerWorld) playerEntity.getWorld());
-                    RandomJunkPersistence.PlayerData playerData = persistence.getOrCreatePlayerData(playerEntity);
-
-                    playerData.overdoseList.clear();
-                    persistence.markDirty();
-
+                    playerEntity.setAttached(RJDataAttachments.OVERDOSE_LIST, new ArrayList<>());
                     ServerPlayNetworking.send(((ServerPlayerEntity) playerEntity), new SyncLidocaineUsagesS2C(0));
                 }
             }
