@@ -49,13 +49,13 @@ public class LidocaineItem extends Item {
                 overdoseListCopy.removeIf(t -> t < (timeNow - TIME_WINDOW_TICKS));
                 player.setAttached(RJDataAttachments.OVERDOSE_LIST, overdoseListCopy);
 
-                if (overdoseList.size() > OVERDOSE_THRESHOLD) {
+                if (overdoseListCopy.size() > OVERDOSE_THRESHOLD) {
                     player.sendMessage(Text.literal("You are overdosing. Use narcan now...").formatted(Formatting.RED), true);
 
                     world.getServer().getSaveProperties().getMainWorldProperties().getScheduledEvents()
                             .setEvent("overdoseTimer" + player.getUuid(), world.getTime() + 100, new OverdoseTimerCallback(player.getUuid()));
                 } else {
-                    player.sendMessage(Text.literal("You feel the burns ease and heal... (" + (OVERDOSE_THRESHOLD + 1 - overdoseList.size()) + " uses before overdose)"), true);
+                    player.sendMessage(Text.literal("You feel the burns ease and heal... (" + (OVERDOSE_THRESHOLD + 1 - overdoseListCopy.size()) + " uses before overdose)"), true);
                 }
 
                 ServerPlayNetworking.send((ServerPlayerEntity) player, new SyncLidocaineUsagesS2C(overdoseListCopy.size()));
